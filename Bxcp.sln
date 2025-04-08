@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35825.156 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bxcp.Tests", "Bxcp.Tests\Bxcp.Tests.csproj", "{4C2AC42A-38DE-494C-9E79-47CF35ACD4AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bxcp.Domain", "Bxcp.Domain\Bxcp.Domain.csproj", "{A881473F-F1A4-4AA7-B530-E4CB66FA552C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4C2AC42A-38DE-494C-9E79-47CF35ACD4AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C2AC42A-38DE-494C-9E79-47CF35ACD4AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C2AC42A-38DE-494C-9E79-47CF35ACD4AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A881473F-F1A4-4AA7-B530-E4CB66FA552C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A881473F-F1A4-4AA7-B530-E4CB66FA552C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A881473F-F1A4-4AA7-B530-E4CB66FA552C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A881473F-F1A4-4AA7-B530-E4CB66FA552C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
