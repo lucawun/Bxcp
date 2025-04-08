@@ -1,7 +1,9 @@
-﻿namespace Bxcp.Domain.Models;
+﻿using Bxcp.Domain.Exceptions;
+
+namespace Bxcp.Domain.Models;
 
 /// <summary>
-/// Represents weather data for a specific day.
+/// Represents a single weather record (day, max/min temperature).
 /// </summary>
 public record WeatherRecord
 {
@@ -14,10 +16,22 @@ public record WeatherRecord
     /// </summary>
     public double TemperatureSpread => MaxTemperature - MinTemperature;
 
-    public double AverageTemperature { get; init; }
-    public double AverageDewPoint { get; init; }
-    public double Precipitation { get; init; }
-    public int WindDirection { get; init; }
-    public double AverageWindSpeed { get; init; }
-    public int MaxWindSpeed { get; init; }
+    /// <summary>
+    /// Creates a new WeatherRecord, validating initial values.
+    /// </summary>
+    /// <exception cref="DomainException">
+    /// Thrown if day is zero or negative, or if MaxTemperature is less than MinTemperature.
+    /// </exception>
+    public WeatherRecord(int day, double maxTemperature, double minTemperature)
+    {
+        if (day <= 0)
+            throw new DomainException("The day number must be a positive integer.");
+
+        if (maxTemperature < minTemperature)
+            throw new DomainException("Max temperature cannot be less than min temperature.");
+
+        Day = day;
+        MaxTemperature = maxTemperature;
+        MinTemperature = minTemperature;
+    }
 }
