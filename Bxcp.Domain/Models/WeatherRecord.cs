@@ -3,7 +3,7 @@
 namespace Bxcp.Domain.Models;
 
 /// <summary>
-/// Represents a single weather record (day, max/min temperature).
+/// Represents weather data for a specific day (day, max/min temperature).
 /// </summary>
 public record WeatherRecord
 {
