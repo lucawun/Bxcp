@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bxcp.Domain", "Bxcp.Domain\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bxcp.Application", "Bxcp.Application\Bxcp.Application.csproj", "{A8EF39B8-111F-4697-B1B9-4D291449BBC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bxcp.Infrastructure", "Bxcp.Infrastructure\Bxcp.Infrastructure.csproj", "{5B4C0611-812C-45C6-93D5-20CBEA708418}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A8EF39B8-111F-4697-B1B9-4D291449BBC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8EF39B8-111F-4697-B1B9-4D291449BBC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8EF39B8-111F-4697-B1B9-4D291449BBC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B4C0611-812C-45C6-93D5-20CBEA708418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B4C0611-812C-45C6-93D5-20CBEA708418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B4C0611-812C-45C6-93D5-20CBEA708418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B4C0611-812C-45C6-93D5-20CBEA708418}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
