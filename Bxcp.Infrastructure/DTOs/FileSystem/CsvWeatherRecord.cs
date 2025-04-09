@@ -1,9 +1,9 @@
-﻿namespace Bxcp.Infrastructure.DTOs;
+﻿namespace Bxcp.Infrastructure.DTOs.FileSystem;
 
 /// <summary>
 /// Data Transfer Object representing a single row from the weather CSV file
 /// </summary>
-public record WeatherCsvRecord
+public record CsvWeatherRecord
 {
     public int Day { get; init; }
     public double MxT { get; init; }

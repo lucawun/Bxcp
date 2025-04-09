@@ -1,9 +1,9 @@
-﻿namespace Bxcp.Infrastructure.DTOs;
+﻿namespace Bxcp.Infrastructure.DTOs.FileSystem;
 
 /// <summary>
 /// Data Transfer Object representing a single row from the countries CSV file
 /// </summary>
-public record CountryCsvRecord
+public record CsvCountryRecord
 {
     public string Name { get; init; }
     public string Capital { get; init; }
