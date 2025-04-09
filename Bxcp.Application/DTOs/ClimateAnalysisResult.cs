@@ -1,9 +1,9 @@
 ﻿namespace Bxcp.Application.DTOs;
 
 /// <summary>
-/// Data Transfer Object containing the results of a weather data analysis
+/// Data Transfer Object containing the results of a climate analysis
 /// </summary>
-public record WeatherAnalysisResult
+public record ClimateAnalysisResult
 {
     /// <summary>
     /// The day number with the smallest temperature spread

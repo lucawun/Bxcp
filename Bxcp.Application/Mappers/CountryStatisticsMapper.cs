@@ -4,16 +4,16 @@ using Bxcp.Domain.Models;
 namespace Bxcp.Application.Mappers;
 
 /// <summary>
-/// Maps between domain models and DTOs for country data
+/// Maps between domain models and DTOs for country use case
 /// </summary>
-public static class CountryMapper
+public static class CountryStatisticsMapper
 {
     /// <summary>
     /// Maps a domain model to a DTO
     /// </summary>
     /// <param name="countryRecord">The domain model to map</param>
     /// <returns>A DTO representing the country analysis result</returns>
-    public static CountryAnalysisResult ToCountryAnalysisResult(CountryRecord countryRecord)
+    public static CountryAnalysisResult ToCountryStatisticsResult(Country countryRecord)
     {
         return new CountryAnalysisResult
         {

@@ -1,7 +1,7 @@
 ﻿namespace Bxcp.Application.DTOs;
 
 /// <summary>
-/// Data Transfer Object containing the results of a country data analysis
+/// Data Transfer Object containing the results of a country analysis
 /// </summary>
 public record CountryAnalysisResult
 {
