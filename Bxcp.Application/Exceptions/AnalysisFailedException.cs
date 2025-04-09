@@ -3,7 +3,7 @@
 /// <summary>
 /// Exception thrown when data analysis fails
 /// </summary>
-public class AnalysisFailedException : DomainException
+public class AnalysisFailedException : ApplicationException
 {
     public AnalysisFailedException(string message) : base(message) { }
 
