@@ -5,7 +5,7 @@ namespace Bxcp.Domain.Models;
 /// <summary>
 /// Represents data about a country.
 /// </summary>
-public record CountryRecord
+public record Country
 {
     public string Name { get; init; } = string.Empty;
     public int Population { get; init; }
@@ -17,12 +17,12 @@ public record CountryRecord
     public double PopulationDensity => Population / Area;
 
     /// <summary>
-    /// Creates a new CountryRecord, validating initial values.
+    /// Creates a new Country, validating initial values.
     /// </summary>
     /// <exception cref="DomainException">
     /// Thrown if the name is empty, population is negative, or area is less than or equal to zero.
     /// </exception>
-    public CountryRecord(string name, int population, double area)
+    public Country(string name, int population, double area)
     {
         if (string.IsNullOrWhiteSpace(name))
             throw new DomainException("Country name cannot be empty.");
