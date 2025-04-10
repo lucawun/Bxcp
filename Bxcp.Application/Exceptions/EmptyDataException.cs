@@ -1,4 +1,4 @@
-﻿namespace Bxcp.Domain.Exceptions;
+﻿namespace Bxcp.Application.Exceptions;
 
 /// <summary>
 /// Exception thrown when no data is available for analysis

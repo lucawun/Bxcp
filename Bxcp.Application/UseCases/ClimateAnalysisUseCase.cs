@@ -1,12 +1,12 @@
 ﻿using Bxcp.Application.DTOs;
+using Bxcp.Application.Exceptions;
 using Bxcp.Application.Mappers;
 using Bxcp.Application.Ports.Incoming;
-using Bxcp.Application.Ports.Outgoing;
 using Bxcp.Domain.DomainServices.Ports;
-using Bxcp.Domain.Exceptions;
 using Bxcp.Domain.Models;
+using Bxcp.Domain.Repositories;
 
-namespace Bxcp.Application.Services;
+namespace Bxcp.Application.UseCases;
 
 public class ClimateAnalysisUsecase : IClimateAnalysisUsecase
 {
@@ -38,7 +38,7 @@ public class ClimateAnalysisUsecase : IClimateAnalysisUsecase
         }
         catch (Exception ex)
         {
-            throw new AnalysisFailedException($"Failed to analyze country data: {ex.Message}", ex);
+            throw new AnalysisFailedException($"Failed to analyze Climate data: {ex.Message}", ex);
         }
     }
 }
