@@ -1,6 +1,4 @@
-﻿using Bxcp.Application.Ports.Outgoing;
-using Bxcp.Domain.Models;
-using Bxcp.Infrastructure.DTOs;
+﻿using Bxcp.Infrastructure.DTOs;
 
 namespace Bxcp.Infrastructure.DataAccess;
 

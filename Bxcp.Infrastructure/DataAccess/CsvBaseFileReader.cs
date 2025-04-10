@@ -1,5 +1,4 @@
-﻿using Bxcp.Application.Ports.Outgoing;
-using Bxcp.Infrastructure.DTOs;
+﻿using Bxcp.Infrastructure.DTOs;
 
 namespace Bxcp.Infrastructure.DataAccess;
 
