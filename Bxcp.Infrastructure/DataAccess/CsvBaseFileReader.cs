@@ -1,16 +1,17 @@
 ﻿using Bxcp.Application.Ports.Outgoing;
+using Bxcp.Infrastructure.DTOs;
 
-namespace Bxcp.Infrastructure.Adapters.FileSystem;
+namespace Bxcp.Infrastructure.DataAccess;
 
 /// <summary>
 /// Base class for reading CSV files with header-based mapping
 /// </summary>
-public abstract class BaseCsvFileReader<T> : IRepository<T> 
+public abstract class CsvBaseFileReader<T>
 {
     private readonly char _delimiter;
     private readonly string _filePath;
 
-    protected BaseCsvFileReader(string filePath, char delimiter)
+    protected CsvBaseFileReader(string filePath, char delimiter)
     {
         _filePath = filePath;
         _delimiter = delimiter;

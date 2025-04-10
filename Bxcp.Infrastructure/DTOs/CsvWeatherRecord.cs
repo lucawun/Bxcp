@@ -1,4 +1,4 @@
-﻿namespace Bxcp.Infrastructure.DTOs.FileSystem;
+﻿namespace Bxcp.Infrastructure.DTOs;
 
 /// <summary>
 /// Data Transfer Object representing a single row from the weather CSV file

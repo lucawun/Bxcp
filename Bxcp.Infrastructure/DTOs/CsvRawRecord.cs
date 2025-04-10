@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Bxcp.Infrastructure.Adapters.FileSystem;
+namespace Bxcp.Infrastructure.DTOs;
 
 /// <summary>
 /// Helper class to extract typed values from CSV data

@@ -1,11 +1,13 @@
-﻿using Bxcp.Infrastructure.DTOs.FileSystem;
+﻿using Bxcp.Application.Ports.Outgoing;
+using Bxcp.Domain.Models;
+using Bxcp.Infrastructure.DTOs;
 
-namespace Bxcp.Infrastructure.Adapters.FileSystem;
+namespace Bxcp.Infrastructure.DataAccess;
 
 /// <summary>
 /// Reads weather data from CSV files
 /// </summary>
-public class CsvWeatherFileReader : BaseCsvFileReader<CsvWeatherRecord>
+public class CsvWeatherFileReader : CsvBaseFileReader<CsvWeatherRecord>
 {
     public CsvWeatherFileReader(string filePath) : base(filePath, ',')
     {
