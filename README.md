@@ -27,7 +27,7 @@ Die Ziele wurden durch den Stakeholder "BetterCallPaul" bereits festgelegt.
 
 Die Hexagonale Architektur (auch "Ports & Adapters" oder "Onion Architecture" genannt) funktioniert wie eine Zwiebel mit mehreren Schichten:
 
-<img src="hexagonal-onion-architecture-theory.png" alt="Hexagonal/Onion-Architektur Theorie" width="800">
+<img src="Resources/hexagonal-onion-architecture-theory.png" alt="Hexagonal/Onion-Architektur Theorie" width="800">
 
 [Quelle: Blog Herberto Graca](https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/comment-page-1)
 
