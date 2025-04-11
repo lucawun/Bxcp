@@ -16,13 +16,13 @@ public class CsvCountryFileReader : CsvBaseFileReader<CsvCountryRecord>
     }
 
     /// <inheritdoc />
-    internal override string[] GetRequiredColumns()
+    public override string[] GetRequiredColumns()
     {
         return new[] { "Name", "Capital" };
     }
 
     /// <inheritdoc />
-    internal override CsvCountryRecord ParseLine(CsvRawRecord rawRecord)
+    public override CsvCountryRecord ParseLine(CsvRawRecord rawRecord)
     {
         return new CsvCountryRecord
         {

@@ -12,6 +12,9 @@ public abstract class CsvBaseFileReader<T>
 
     protected CsvBaseFileReader(string filePath, char delimiter)
     {
+        if (string.IsNullOrEmpty(filePath))
+            throw new ArgumentException("File path cannot be null or empty.", nameof(filePath));
+
         _filePath = filePath;
         _delimiter = delimiter;
     }
@@ -138,11 +141,11 @@ public abstract class CsvBaseFileReader<T>
     /// <summary>
     /// Gets the list of columns that must exist in the CSV file
     /// </summary>
-    internal abstract string[] GetRequiredColumns();
+    public abstract string[] GetRequiredColumns();
 
     /// <summary>
     /// Parses a CSV line to create a record using the RecordBuilder
     /// </summary>
-    internal abstract T ParseLine(CsvRawRecord builder);
+    public abstract T ParseLine(CsvRawRecord builder);
 
 }

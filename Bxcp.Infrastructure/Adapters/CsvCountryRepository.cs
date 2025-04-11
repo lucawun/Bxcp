@@ -23,7 +23,7 @@ public class CsvCountryRepository : IRepository<Country>
     /// </summary>
     public IEnumerable<Country> ReadAllRecords()
     {
-        var csvRecords = _fileReader.ReadAllRecords();
+        IEnumerable<CsvCountryRecord> csvRecords = _fileReader.ReadAllRecords();
         return csvRecords.Select(MapToDomainEntity);
     }
 

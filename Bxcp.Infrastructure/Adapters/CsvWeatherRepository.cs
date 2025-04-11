@@ -27,7 +27,7 @@ public class CsvWeatherRepository : IRepository<Weather>
     /// <returns>Collection of Weather domain entities</returns>
     public IEnumerable<Weather> ReadAllRecords()
     {
-        var csvRecords = _fileReader.ReadAllRecords();
+        IEnumerable<CsvWeatherRecord> csvRecords = _fileReader.ReadAllRecords();
         return csvRecords.Select(MapToDomainEntity);
     }
 

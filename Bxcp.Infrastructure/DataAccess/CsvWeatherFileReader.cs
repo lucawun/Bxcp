@@ -12,13 +12,13 @@ public class CsvWeatherFileReader : CsvBaseFileReader<CsvWeatherRecord>
     }
 
     /// <inheritdoc />
-    internal override string[] GetRequiredColumns()
+    public override string[] GetRequiredColumns()
     {
         return new[] { "Day", "MxT", "MnT" };
     }
 
     /// <inheritdoc />
-    internal override CsvWeatherRecord ParseLine(CsvRawRecord rowRecord)
+    public override CsvWeatherRecord ParseLine(CsvRawRecord rowRecord)
     {
         return new CsvWeatherRecord
         {

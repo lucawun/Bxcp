@@ -9,8 +9,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Bxcp.Application\Bxcp.Application.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
 </Project>
