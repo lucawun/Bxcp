@@ -5,7 +5,7 @@ using Bxcp.Domain.DomainServices;
 using Bxcp.Domain.Models;
 using Bxcp.Domain.Ports;
 using Bxcp.Infrastructure.Adapters;
-using Bxcp.Infrastructure.DataAccess;
+using Bxcp.Infrastructure.DataAccess.CsvHelper;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bxcp.Console;

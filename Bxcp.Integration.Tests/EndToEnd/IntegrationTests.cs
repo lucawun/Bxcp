@@ -96,12 +96,13 @@ public class IntegrationTests
         ICountryAnalysisStatisticsUsecase countryAnalysisUseCase = serviceProvider.GetRequiredService<ICountryAnalysisStatisticsUsecase>();
 
         // Act & Assert - Check for inner exception
-        var exception = Assert.Throws<AnalysisFailedException>(() => climateAnalysisUseCase.AnalyzeClimate());
+        AnalysisFailedException exception = Assert.Throws<AnalysisFailedException>(() => climateAnalysisUseCase.AnalyzeClimate());
         Assert.IsType<FileNotFoundException>(exception.InnerException);
 
-        var exception2 = Assert.Throws<AnalysisFailedException>(() => countryAnalysisUseCase.AnalyzeCountryStatistics());
+        AnalysisFailedException exception2 = Assert.Throws<AnalysisFailedException>(() => countryAnalysisUseCase.AnalyzeCountryStatistics());
         Assert.IsType<FileNotFoundException>(exception2.InnerException);
     }
+
     [Fact]
     public void DomainLayer_RegistersExpectedServices()
     {
@@ -117,5 +118,4 @@ public class IntegrationTests
         Assert.NotNull(climateService);
         Assert.NotNull(countryService);
     }
-
 }

@@ -7,7 +7,7 @@ using Bxcp.Domain.Ports;
 using Moq;
 using Xunit;
 
-namespace Bxcp.Domain.Tests.ValueObjects;
+namespace Bxcp.Domain.Tests.DomainServices;
 
 public class ClimateAnalysisUsecaseTests
 {
