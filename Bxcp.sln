@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bxcp.Tests", "Bxcp.Tests\Bxcp.Tests.csproj", "{4C2AC42A-38DE-494C-9E79-47CF35ACD4AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bxcp.Domain.Tests", "Bxcp.Domain.Tests\Bxcp.Domain.Tests.csproj", "{4C2AC42A-38DE-494C-9E79-47CF35ACD4AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bxcp.Domain", "Bxcp.Domain\Bxcp.Domain.csproj", "{A881473F-F1A4-4AA7-B530-E4CB66FA552C}"
 EndProject
@@ -18,6 +18,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B18F7624-F65E-42E6-9372-07FE2973CFAA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bxcp.Console", "Bxcp.Console\Bxcp.Console.csproj", "{607C158F-4810-43EC-BA43-EE99D5AA66FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bxcp.Application.Tests", "Bxcp.Application.Tests\Bxcp.Application.Tests.csproj", "{AB151FE7-2280-41B7-8855-6354D3E6DDA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bxcp.Infrastructure.Tests", "Bxcp.Infrastructure.Tests\Bxcp.Infrastructure.Tests.csproj", "{16BC804D-633A-4F29-9768-85DC42FE1AD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bxcp.Integration.Tests", "Bxcp.Integration.Tests\Bxcp.Integration.Tests.csproj", "{5FE96F06-D4DA-4080-A0EF-21D1A1A5F118}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{194274AF-FFBD-46D4-A640-4753D6D28CE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +53,18 @@ Global
 		{607C158F-4810-43EC-BA43-EE99D5AA66FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{607C158F-4810-43EC-BA43-EE99D5AA66FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{607C158F-4810-43EC-BA43-EE99D5AA66FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB151FE7-2280-41B7-8855-6354D3E6DDA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB151FE7-2280-41B7-8855-6354D3E6DDA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB151FE7-2280-41B7-8855-6354D3E6DDA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB151FE7-2280-41B7-8855-6354D3E6DDA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16BC804D-633A-4F29-9768-85DC42FE1AD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16BC804D-633A-4F29-9768-85DC42FE1AD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16BC804D-633A-4F29-9768-85DC42FE1AD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16BC804D-633A-4F29-9768-85DC42FE1AD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FE96F06-D4DA-4080-A0EF-21D1A1A5F118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE96F06-D4DA-4080-A0EF-21D1A1A5F118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE96F06-D4DA-4080-A0EF-21D1A1A5F118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE96F06-D4DA-4080-A0EF-21D1A1A5F118}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +74,10 @@ Global
 		{A881473F-F1A4-4AA7-B530-E4CB66FA552C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{A8EF39B8-111F-4697-B1B9-4D291449BBC2} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{5B4C0611-812C-45C6-93D5-20CBEA708418} = {9309C9F8-99DB-498C-B58F-D547CCA6D2B8}
+		{607C158F-4810-43EC-BA43-EE99D5AA66FF} = {194274AF-FFBD-46D4-A640-4753D6D28CE2}
+		{AB151FE7-2280-41B7-8855-6354D3E6DDA1} = {B18F7624-F65E-42E6-9372-07FE2973CFAA}
+		{16BC804D-633A-4F29-9768-85DC42FE1AD8} = {B18F7624-F65E-42E6-9372-07FE2973CFAA}
+		{5FE96F06-D4DA-4080-A0EF-21D1A1A5F118} = {B18F7624-F65E-42E6-9372-07FE2973CFAA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2BD3F1C7-FA8A-431E-A335-2117844BBD09}
