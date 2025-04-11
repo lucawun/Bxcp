@@ -18,7 +18,7 @@ public class CountryStatisticsServiceTests
     public void FindHighestPopulationDensity_WithValidData_ReturnsCorrectCountry()
     {
         // Arrange
-        var countries = new List<Country>
+        List<Country> countries = new List<Country>
         {
             new Country("Country1", 1000000, 1000), // density = 1000
             new Country("Country2", 500000, 100),   // density = 5000 (highest)
@@ -26,7 +26,7 @@ public class CountryStatisticsServiceTests
         };
 
         // Act
-        var result = _service.FindHighestPopulationDensity(countries);
+        Country result = _service.FindHighestPopulationDensity(countries);
 
         // Assert
         Assert.Equal("Country2", result.Name);
@@ -37,10 +37,10 @@ public class CountryStatisticsServiceTests
     public void FindHighestPopulationDensity_WithEmptyList_ThrowsDomainException()
     {
         // Arrange
-        var countries = new List<Country>();
+        List<Country> countries = new List<Country>();
 
         // Act & Assert
-        var exception = Assert.Throws<DomainException>(() => _service.FindHighestPopulationDensity(countries));
+        DomainException exception = Assert.Throws<DomainException>(() => _service.FindHighestPopulationDensity(countries));
         Assert.Equal("Country records cannot be null or empty.", exception.Message);
     }
 
@@ -51,7 +51,7 @@ public class CountryStatisticsServiceTests
         List<Country>? countries = null;
 
         // Act & Assert
-        var exception = Assert.Throws<DomainException>(() => _service.FindHighestPopulationDensity(countries!));
+        DomainException exception = Assert.Throws<DomainException>(() => _service.FindHighestPopulationDensity(countries!));
         Assert.Equal("Country records cannot be null or empty.", exception.Message);
     }
 
@@ -59,7 +59,7 @@ public class CountryStatisticsServiceTests
     public void FindHighestPopulationDensity_WithMultipleSameValues_ReturnsFirst()
     {
         // Arrange
-        var countries = new List<Country>
+        List<Country> countries = new List<Country>
         {
             new Country("Country1", 10000, 10), // density = 1000
             new Country("Country2", 20000, 20), // density = 1000 (same)
@@ -67,7 +67,7 @@ public class CountryStatisticsServiceTests
         };
 
         // Act
-        var result = _service.FindHighestPopulationDensity(countries);
+        Country result = _service.FindHighestPopulationDensity(countries);
 
         // Assert
         Assert.Equal("Country1", result.Name); // Should return the first one with highest density
@@ -77,7 +77,7 @@ public class CountryStatisticsServiceTests
     public void FindHighestPopulationDensity_WithExtremeValues_ReturnsCorrectResult()
     {
         // Arrange
-        var countries = new List<Country>
+        List<Country> countries = new List<Country>
         {
             new Country("Tiny", 100, 0.01),          // density = 10000 (highest)
             new Country("Medium", 1000000, 1000),    // density = 1000
@@ -85,7 +85,7 @@ public class CountryStatisticsServiceTests
         };
 
         // Act
-        var result = _service.FindHighestPopulationDensity(countries);
+        Country result = _service.FindHighestPopulationDensity(countries);
 
         // Assert
         Assert.Equal("Tiny", result.Name);
@@ -96,13 +96,13 @@ public class CountryStatisticsServiceTests
     public void FindHighestPopulationDensity_WithSingleCountry_ReturnsThatCountry()
     {
         // Arrange
-        var countries = new List<Country>
+        List<Country> countries = new List<Country>
         {
             new Country("OnlyOne", 1000000, 1000) // density = 1000
         };
 
         // Act
-        var result = _service.FindHighestPopulationDensity(countries);
+        Country result = _service.FindHighestPopulationDensity(countries);
 
         // Assert
         Assert.Equal("OnlyOne", result.Name);

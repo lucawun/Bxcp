@@ -15,7 +15,7 @@ public class WeatherTests
         double minTemp = 20.0;
 
         // Act
-        var weather = new Weather(day, maxTemp, minTemp);
+        Weather weather = new Weather(day, maxTemp, minTemp);
 
         // Assert
         Assert.Equal(day, weather.Day);
@@ -32,7 +32,7 @@ public class WeatherTests
         double minTemp = 20.0;
 
         // Act & Assert
-        var exception = Assert.Throws<DomainException>(() => new Weather(day, maxTemp, minTemp));
+        DomainException exception = Assert.Throws<DomainException>(() => new Weather(day, maxTemp, minTemp));
         Assert.Equal("The day number must be a positive integer.", exception.Message);
     }
 
@@ -45,7 +45,7 @@ public class WeatherTests
         double minTemp = 20.0;
 
         // Act & Assert
-        var exception = Assert.Throws<DomainException>(() => new Weather(day, maxTemp, minTemp));
+        DomainException exception = Assert.Throws<DomainException>(() => new Weather(day, maxTemp, minTemp));
         Assert.Equal("The day number must be a positive integer.", exception.Message);
     }
 
@@ -58,7 +58,7 @@ public class WeatherTests
         double minTemp = 20.0;
 
         // Act
-        var weather = new Weather(day, maxTemp, minTemp);
+        Weather weather = new Weather(day, maxTemp, minTemp);
 
         // Assert
         Assert.Equal(0.0, weather.TemperatureSpread);
@@ -73,7 +73,7 @@ public class WeatherTests
         double minTemp = 30.0;
 
         // Act & Assert
-        var exception = Assert.Throws<DomainException>(() => new Weather(day, maxTemp, minTemp));
+        DomainException exception = Assert.Throws<DomainException>(() => new Weather(day, maxTemp, minTemp));
         Assert.Equal("Max temperature cannot be less than min temperature.", exception.Message);
     }
 
@@ -81,7 +81,7 @@ public class WeatherTests
     public void TemperatureSpread_CalculatesCorrectValue()
     {
         // Arrange
-        var weather = new Weather(1, 30.0, 20.0);
+        Weather weather = new Weather(1, 30.0, 20.0);
         double expectedSpread = 10.0;
 
         // Act
@@ -95,7 +95,7 @@ public class WeatherTests
     public void TemperatureSpread_WithNegativeTemperatures_CalculatesCorrectly()
     {
         // Arrange
-        var weather = new Weather(1, -10.0, -30.0);
+        Weather weather = new Weather(1, -10.0, -30.0);
         double expectedSpread = 20.0; 
 
         // Act
@@ -109,7 +109,7 @@ public class WeatherTests
     public void TemperatureSpread_WithMixedSignTemperatures_CalculatesCorrectly()
     {
         // Arrange
-        var weather = new Weather(1, 10.0, -5.0);
+        Weather weather = new Weather(1, 10.0, -5.0);
         double expectedSpread = 15.0; 
 
         // Act

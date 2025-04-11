@@ -40,21 +40,21 @@ public class CountryAnalysisStratisticsUsecaseTests
     public void AnalyzeCountryStatistics_HappyPath_ReturnsCorrectResult()
     {
         // Arrange
-        var countries = new List<Country>
+        List<Country> countries = new List<Country>
         {
             new Country("Country1", 1000000, 1000),
             new Country("Country2", 500000, 100),
             new Country("Country3", 2000000, 5000)
         };
 
-        var highestDensityCountry = new Country("Country2", 500000, 100); // density = 5000
+        Country highestDensityCountry = new Country("Country2", 500000, 100); // density = 5000
 
         _mockRepository.Setup(r => r.ReadAllRecords()).Returns(countries);
         _mockCountryService.Setup(s => s.FindHighestPopulationDensity(countries))
             .Returns(highestDensityCountry);
 
         // Act
-        var result = _useCase.AnalyzeCountryStatistics();
+        DTOs.CountryAnalysisResult result = _useCase.AnalyzeCountryStatistics();
 
         // Assert
         Assert.Equal("Country2", result.CountryWithHighestDensity);
@@ -69,19 +69,19 @@ public class CountryAnalysisStratisticsUsecaseTests
     public void AnalyzeCountryStatistics_ServiceReturnsExpectedData_MapsCorrectly()
     {
         // Arrange
-        var countries = new List<Country>
+        List<Country> countries = new List<Country>
         {
             new Country("MicroCountry", 100000, 10) // Density = 10000
         };
 
-        var resultCountry = new Country("MicroCountry", 100000, 10);
+        Country resultCountry = new Country("MicroCountry", 100000, 10);
 
         _mockRepository.Setup(r => r.ReadAllRecords()).Returns(countries);
         _mockCountryService.Setup(s => s.FindHighestPopulationDensity(countries))
             .Returns(resultCountry);
 
         // Act
-        var result = _useCase.AnalyzeCountryStatistics();
+        DTOs.CountryAnalysisResult result = _useCase.AnalyzeCountryStatistics();
 
         // Assert
         Assert.Equal("MicroCountry", result.CountryWithHighestDensity);

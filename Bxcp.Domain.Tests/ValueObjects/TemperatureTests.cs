@@ -41,21 +41,21 @@ public class ClimateAnalysisUsecaseTests
     public void AnalyzeClimate_HappyPath_ReturnsCorrectResult()
     {
         // Arrange
-        var weatherRecords = new List<Weather>
+        List<Weather> weatherRecords = new List<Weather>
         {
             new Weather(1, 30.0, 20.0),
             new Weather(2, 25.0, 15.0),
             new Weather(3, 35.0, 25.0)
         };
 
-        var smallestSpreadWeather = new Weather(2, 25.0, 15.0);
+        Weather smallestSpreadWeather = new Weather(2, 25.0, 15.0);
 
         _mockRepository.Setup(r => r.ReadAllRecords()).Returns(weatherRecords);
         _mockClimateService.Setup(s => s.FindSmallestTemperatureSpread(weatherRecords))
             .Returns(smallestSpreadWeather);
 
         // Act
-        var result = _useCase.AnalyzeClimate();
+        Application.DTOs.ClimateAnalysisResult result = _useCase.AnalyzeClimate();
 
         // Assert
         Assert.Equal(2, result.DayWithSmallestTemperatureSpread);
@@ -72,7 +72,7 @@ public class ClimateAnalysisUsecaseTests
         _mockRepository.Setup(r => r.ReadAllRecords()).Throws(new Exception("Repository error"));
 
         // Act & Assert
-        var exception = Assert.Throws<AnalysisFailedException>(() => _useCase.AnalyzeClimate());
+        AnalysisFailedException exception = Assert.Throws<AnalysisFailedException>(() => _useCase.AnalyzeClimate());
         Assert.Contains("Failed to analyze Climate data", exception.Message);
         Assert.Contains("Repository error", exception.Message);
     }
@@ -81,13 +81,13 @@ public class ClimateAnalysisUsecaseTests
     public void AnalyzeClimate_ServiceThrowsException_ThrowsAnalysisFailedException()
     {
         // Arrange
-        var weatherRecords = new List<Weather> { new Weather(1, 30.0, 20.0) };
+        List<Weather> weatherRecords = new List<Weather> { new Weather(1, 30.0, 20.0) };
         _mockRepository.Setup(r => r.ReadAllRecords()).Returns(weatherRecords);
         _mockClimateService.Setup(s => s.FindSmallestTemperatureSpread(weatherRecords))
             .Throws(new DomainException("Service error"));
 
         // Act & Assert
-        var exception = Assert.Throws<AnalysisFailedException>(() => _useCase.AnalyzeClimate());
+        AnalysisFailedException exception = Assert.Throws<AnalysisFailedException>(() => _useCase.AnalyzeClimate());
         Assert.Contains("Failed to analyze Climate data", exception.Message);
         Assert.Contains("Service error", exception.Message);
     }
@@ -96,19 +96,19 @@ public class ClimateAnalysisUsecaseTests
     public void AnalyzeClimate_ServiceReturnsExpectedData_MapsCorrectly()
     {
         // Arrange
-        var weatherRecords = new List<Weather>
+        List<Weather> weatherRecords = new List<Weather>
         {
             new Weather(1, 30.0, 20.0)
         };
 
-        var resultWeather = new Weather(1, 30.0, 20.0); // Spread = 10
+        Weather resultWeather = new Weather(1, 30.0, 20.0); // Spread = 10
 
         _mockRepository.Setup(r => r.ReadAllRecords()).Returns(weatherRecords);
         _mockClimateService.Setup(s => s.FindSmallestTemperatureSpread(weatherRecords))
             .Returns(resultWeather);
 
         // Act
-        var result = _useCase.AnalyzeClimate();
+        Application.DTOs.ClimateAnalysisResult result = _useCase.AnalyzeClimate();
 
         // Assert
         Assert.Equal(1, result.DayWithSmallestTemperatureSpread);
