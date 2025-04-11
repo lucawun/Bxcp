@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -6,14 +6,6 @@
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
 	</PropertyGroup>
-	<ItemGroup>
-	  <Content Include="TestData\countries.csv">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="TestData\weather.csv">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
 		<PackageReference Include="Moq" Version="4.20.70" />
@@ -31,13 +23,5 @@
 		<ProjectReference Include="..\Bxcp.Domain\Bxcp.Domain.csproj" />
 		<ProjectReference Include="..\Bxcp.Application\Bxcp.Application.csproj" />
 		<ProjectReference Include="..\Bxcp.Infrastructure\Bxcp.Infrastructure.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Update="TestData\countries.csv">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="TestData\weather.csv">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 	</ItemGroup>
 </Project>

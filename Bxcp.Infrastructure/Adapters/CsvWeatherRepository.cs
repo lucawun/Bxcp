@@ -1,6 +1,6 @@
 ﻿using Bxcp.Domain.Models;
 using Bxcp.Domain.Ports;
-using Bxcp.Infrastructure.DataAccess;
+using Bxcp.Infrastructure.DataAccess.CsvHelper;
 using Bxcp.Infrastructure.DTOs;
 
 namespace Bxcp.Infrastructure.Adapters;
