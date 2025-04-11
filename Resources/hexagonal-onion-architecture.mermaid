@@ -1,0 +1,93 @@
+flowchart TB
+    subgraph Console["Bxcp.Console"]
+        Program["Program.cs"]
+        ServiceProviderExt["ServiceProviderExtensions.cs"]
+    end
+    
+    subgraph Domain["Bxcp.Domain"]
+        subgraph DomainModels["Models"]
+            WM["Weather.cs"]
+            CM["Country.cs"]
+        end
+        
+        subgraph DomainServices["DomainServices"]
+            DS1["ClimateService.cs"]
+            DS2["CountryStatisticsService.cs"]
+        end
+        
+        subgraph DomainPorts["Ports"]
+            DPI["IClimateService"]
+            DPC["ICountryStatisticsService"]
+            DPR["IDataProviderRepository"]
+        end
+        
+        subgraph DomainExceptions["Exceptions"]
+            DE["DomainException.cs"]
+        end
+    end
+    
+    subgraph Application["Bxcp.Application"]
+        subgraph UseCases["UseCases"]
+            UC1["ClimateAnalysisUseCase.cs"]
+            UC2["CountryAnalysisStrategisticsUseCase.cs"]
+        end
+        
+        subgraph Mappers["Mappers"]
+            MA1["ClimateAnalysisMapper.cs"]
+            MA2["CountryStatisticsMapper.cs"]
+        end
+        
+        subgraph DTOs["DTOs"]
+            DTO1["ClimateAnalysisResult.cs"]
+            DTO2["CountryAnalysisResult.cs"]
+        end
+        
+        subgraph AppExceptions["Exceptions"]
+            AE1["AnalysisFailedException.cs"]
+            AE2["EmptyDataException.cs"]
+        end
+        
+        subgraph DrivingPorts["Ports.Driving"]
+            DrivP1["IClimateAnalysisUsecase"]
+            DrivP2["ICountryAnalysisStatisticsUsecase"]
+        end
+    end
+    
+    subgraph Infrastructure["Bxcp.Infrastructure"]
+        subgraph DataAccess["DataAccess.CsvHelper"]
+            DA1["CsvBaseFileReader.cs"]
+            DA2["CsvCountryFileReader.cs"]
+            DA3["CsvWeatherFileReader.cs"]
+            
+            subgraph Utils["Utils"]
+                UT1["MultiFormatFactory.cs"]
+                
+                subgraph Converters["Converters"]
+                    CV1["MultiFormatInt.cs"]
+                    CV2["MultiFormatDouble.cs"]
+                    CV3["MultiFormatDecimal.cs"]
+                    CV4["NormalizeNumber.cs"]
+                    CV5["SplitField.cs"]
+                end
+            end
+        end
+        
+        subgraph Adapters["Adapters"]
+            AD1["CsvCountryRepository.cs"]
+            AD2["CsvWeatherRepository.cs"]
+        end
+        
+        subgraph InfraDTOs["DTOs"]
+            ID1["CsvCountryRecord.cs"]
+            ID2["CsvWeatherRecord.cs"]
+        end
+    end
+    
+    Console --> Application
+    Console --> Infrastructure
+    Console --> Domain
+    Application --> Domain
+    Infrastructure --> Domain
+    Infrastructure --> Application
+    
+    class Domain,Application,Infrastructure,Console important

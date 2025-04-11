@@ -1,0 +1,43 @@
+sequenceDiagram
+    participant CLI as Program (UI)
+    participant UC as CountryAnalysisStratisticsUsecase<br>(Application)
+    participant REPO as CsvCountryRepository<br>(Infrastructure)
+    participant FR as CsvCountryFileReader<br>(Infrastructure)
+    participant CS as CountryStatisticsService<br>(Domain)
+    participant MAP as CountryStatisticsMapper<br>(Application)
+    
+    Note over CLI,MAP: Ablauf der Country-Analyse durch alle Schichten
+
+    CLI->>+UC: AnalyzeCountryStatistics()
+    
+    UC->>+REPO: ReadAllRecords()
+    REPO->>+FR: ReadAllRecords()
+    FR-->>-REPO: CsvCountryRecords (DTOs)
+    
+    Note right of REPO: Infrastructure-zu-Domain Mapping
+    REPO->>REPO: Konvertiert DTOs zu Domain-Entities
+    REPO-->>-UC: Country-Objekte (Domain-Entities)
+    
+    alt Keine Daten gefunden
+        UC->>UC: Wirft EmptyDataException
+    else Daten vorhanden
+        UC->>+CS: FindHighestPopulationDensity(countries)
+        
+        Note right of CS: Domainlogik
+        CS->>CS: Findet Land mit höchster<br>Bevölkerungsdichte
+        CS-->>-UC: Country mit höchster Dichte
+        
+        UC->>+MAP: ToCountryStatisticsResult(country)
+        MAP-->>-UC: CountryAnalysisResult DTO
+    end
+    
+    alt Exception während Verarbeitung
+        UC->>UC: Fängt Exception
+        UC->>UC: Verpackt in AnalysisFailedException
+        UC-->>CLI: Wirft AnalysisFailedException
+    else Erfolgreiche Verarbeitung
+        UC-->>-CLI: CountryAnalysisResult
+        CLI->>CLI: Anzeige des Ergebnisses
+    end
+    
+    Note over CLI,MAP: Die Abhängigkeiten verlaufen von außen nach innen,<br>aber der Kontrollfluss von innen nach außen
