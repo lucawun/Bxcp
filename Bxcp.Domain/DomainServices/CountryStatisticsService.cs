@@ -1,8 +1,8 @@
-﻿using Bxcp.Domain.DomainServices.Ports;
-using Bxcp.Domain.Exceptions;
+﻿using Bxcp.Domain.Exceptions;
 using Bxcp.Domain.Models;
+using Bxcp.Domain.Ports.Incoming;
 
-namespace Bxcp.Domain.DomainServices.Services;
+namespace Bxcp.Domain.DomainServices;
 
 public class CountryStatisticsService : ICountryStatisticsService
 {
