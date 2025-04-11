@@ -1,6 +1,6 @@
 ﻿using Bxcp.Application.DTOs;
 
-namespace Bxcp.Application.Ports.Incoming;
+namespace Bxcp.Application.Ports.Driving;
 
 public interface ICountryAnalysisStatisticsUsecase
 {

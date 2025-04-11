@@ -1,5 +1,5 @@
 ﻿using Bxcp.Domain.Models;
-using Bxcp.Domain.Repositories;
+using Bxcp.Domain.Ports;
 using Bxcp.Infrastructure.DataAccess;
 using Bxcp.Infrastructure.DTOs;
 using System.Globalization;
@@ -9,7 +9,7 @@ namespace Bxcp.Infrastructure.Adapters;
 /// <summary>
 /// Repository that reads country data from CSV files and converts to domain models
 /// </summary>
-public class CsvCountryRepository : IRepository<Country>
+public class CsvCountryRepository : IDataProviderRepository<Country>
 {
     private readonly CsvCountryFileReader _fileReader;
 

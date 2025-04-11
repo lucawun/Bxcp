@@ -1,20 +1,19 @@
 ﻿using Bxcp.Application.DTOs;
 using Bxcp.Application.Exceptions;
 using Bxcp.Application.Mappers;
-using Bxcp.Application.Ports.Incoming;
+using Bxcp.Application.Ports.Driving;
 using Bxcp.Domain.Models;
-using Bxcp.Domain.Ports.Incoming;
-using Bxcp.Domain.Repositories;
+using Bxcp.Domain.Ports;
 
 namespace Bxcp.Application.UseCases;
 
 public class ClimateAnalysisUsecase : IClimateAnalysisUsecase
 {
-    private readonly IRepository<Weather> _repository;
+    private readonly IDataProviderRepository<Weather> _repository;
     private readonly IClimateService _climateService;
 
     public ClimateAnalysisUsecase(
-       IRepository<Weather> repository,
+       IDataProviderRepository<Weather> repository,
        IClimateService climateService)
     {
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));

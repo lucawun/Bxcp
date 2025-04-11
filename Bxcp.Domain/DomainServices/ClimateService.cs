@@ -1,6 +1,6 @@
 ﻿using Bxcp.Domain.Exceptions;
 using Bxcp.Domain.Models;
-using Bxcp.Domain.Ports.Incoming;
+using Bxcp.Domain.Ports;
 
 namespace Bxcp.Domain.DomainServices;
 

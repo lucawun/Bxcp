@@ -1,8 +1,8 @@
 ﻿using Bxcp.Application.DTOs;
 using Bxcp.Application.Exceptions;
-using Bxcp.Application.Ports.Incoming;
+using Bxcp.Application.Ports.Driving;
 using Bxcp.Console;
-using Bxcp.Domain.Ports.Incoming;
+using Bxcp.Domain.Ports;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 

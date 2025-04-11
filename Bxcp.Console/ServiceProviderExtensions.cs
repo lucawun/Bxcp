@@ -1,10 +1,9 @@
 ﻿using Bxcp.Application.DTOs;
-using Bxcp.Application.Ports.Incoming;
+using Bxcp.Application.Ports.Driving;
 using Bxcp.Application.UseCases;
 using Bxcp.Domain.DomainServices;
 using Bxcp.Domain.Models;
-using Bxcp.Domain.Ports.Incoming;
-using Bxcp.Domain.Repositories;
+using Bxcp.Domain.Ports;
 using Bxcp.Infrastructure.Adapters;
 using Bxcp.Infrastructure.DataAccess;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,8 +45,8 @@ public static class ServiceProviderExtensions
         return services
             .AddSingleton(new CsvCountryFileReader(countriesFilePath))
             .AddSingleton(new CsvWeatherFileReader(weatherFilePath))
-            .AddSingleton<IRepository<Country>, CsvCountryRepository>()
-            .AddSingleton<IRepository<Weather>, CsvWeatherRepository>();
+            .AddSingleton<IDataProviderRepository<Country>, CsvCountryRepository>()
+            .AddSingleton<IDataProviderRepository<Weather>, CsvWeatherRepository>();
     }
 
     public static void RunWeatherAnalysis(this ServiceProvider serviceProvider)

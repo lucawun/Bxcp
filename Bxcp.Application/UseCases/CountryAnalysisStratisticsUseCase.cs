@@ -1,20 +1,18 @@
 ﻿using Bxcp.Application.DTOs;
 using Bxcp.Application.Exceptions;
 using Bxcp.Application.Mappers;
-using Bxcp.Application.Ports.Incoming;
+using Bxcp.Application.Ports.Driving;
 using Bxcp.Domain.Models;
-using Bxcp.Domain.Ports.Incoming;
-using Bxcp.Domain.Repositories;
-
+using Bxcp.Domain.Ports;
 
 namespace Bxcp.Application.UseCases;
 public class CountryAnalysisStratisticsUsecase : ICountryAnalysisStatisticsUsecase
 {
-    private readonly IRepository<Country> _repository;
+    private readonly IDataProviderRepository<Country> _repository;
     private readonly ICountryStatisticsService _countryStatisticsService;
 
     public CountryAnalysisStratisticsUsecase(
-       IRepository<Country> fileReader,
+       IDataProviderRepository<Country> fileReader,
        ICountryStatisticsService countryStatisticsService)
     {
         _repository = fileReader ?? throw new ArgumentNullException(nameof(fileReader));

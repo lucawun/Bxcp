@@ -1,10 +1,10 @@
-﻿namespace Bxcp.Domain.Ports.Outgoing;
+﻿namespace Bxcp.Domain.Ports;
 
 /// <summary>
 /// This interface will be implemented by adapters in the infrastructure layer
 /// </summary>
 /// <typeparam name="T">The type of data to be read</typeparam>
-public interface IRepository<T>
+public interface IDataProviderRepository<T>
 {
     /// <summary>
     /// Reads all records

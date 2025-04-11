@@ -1,10 +1,9 @@
 ﻿using Bxcp.Application.Exceptions;
-using Bxcp.Application.Ports.Incoming;
+using Bxcp.Application.Ports.Driving;
 using Bxcp.Application.UseCases;
 using Bxcp.Domain.Exceptions;
 using Bxcp.Domain.Models;
-using Bxcp.Domain.Ports.Incoming;
-using Bxcp.Domain.Repositories;
+using Bxcp.Domain.Ports;
 using Moq;
 using Xunit;
 
@@ -12,13 +11,13 @@ namespace Bxcp.Domain.Tests.ValueObjects;
 
 public class ClimateAnalysisUsecaseTests
 {
-    private readonly Mock<IRepository<Weather>> _mockRepository;
+    private readonly Mock<IDataProviderRepository<Weather>> _mockRepository;
     private readonly Mock<IClimateService> _mockClimateService;
     private readonly IClimateAnalysisUsecase _useCase;
 
     public ClimateAnalysisUsecaseTests()
     {
-        _mockRepository = new Mock<IRepository<Weather>>();
+        _mockRepository = new Mock<IDataProviderRepository<Weather>>();
         _mockClimateService = new Mock<IClimateService>();
         _useCase = new ClimateAnalysisUsecase(_mockRepository.Object, _mockClimateService.Object);
     }

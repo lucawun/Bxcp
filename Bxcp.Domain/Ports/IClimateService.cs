@@ -1,6 +1,6 @@
 ﻿using Bxcp.Domain.Models;
 
-namespace Bxcp.Domain.Ports.Incoming;
+namespace Bxcp.Domain.Ports;
 
 public interface IClimateService
 {

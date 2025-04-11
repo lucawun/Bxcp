@@ -2,8 +2,7 @@
 using Bxcp.Application.UseCases;
 using Bxcp.Domain.Exceptions;
 using Bxcp.Domain.Models;
-using Bxcp.Domain.Ports.Incoming;
-using Bxcp.Domain.Repositories;
+using Bxcp.Domain.Ports;
 using Moq;
 using Xunit;
 
@@ -11,13 +10,13 @@ namespace Bxcp.Application.Tests.UseCases;
 
 public class CountryAnalysisStratisticsUsecaseTests
 {
-    private readonly Mock<IRepository<Country>> _mockRepository;
+    private readonly Mock<IDataProviderRepository<Country>> _mockRepository;
     private readonly Mock<ICountryStatisticsService> _mockCountryService;
     private readonly CountryAnalysisStratisticsUsecase _useCase;
 
     public CountryAnalysisStratisticsUsecaseTests()
     {
-        _mockRepository = new Mock<IRepository<Country>>();
+        _mockRepository = new Mock<IDataProviderRepository<Country>>();
         _mockCountryService = new Mock<ICountryStatisticsService>();
         _useCase = new CountryAnalysisStratisticsUsecase(_mockRepository.Object, _mockCountryService.Object);
     }

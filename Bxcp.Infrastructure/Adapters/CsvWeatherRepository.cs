@@ -1,5 +1,5 @@
 ﻿using Bxcp.Domain.Models;
-using Bxcp.Domain.Repositories;
+using Bxcp.Domain.Ports;
 using Bxcp.Infrastructure.DataAccess;
 using Bxcp.Infrastructure.DTOs;
 
@@ -8,7 +8,7 @@ namespace Bxcp.Infrastructure.Adapters;
 /// <summary>
 /// Repository that reads weather data from CSV files and converts to domain models
 /// </summary>
-public class CsvWeatherRepository : IRepository<Weather>
+public class CsvWeatherRepository : IDataProviderRepository<Weather>
 {
     private readonly CsvWeatherFileReader _fileReader;
 
