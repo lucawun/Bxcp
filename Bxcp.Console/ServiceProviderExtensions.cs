@@ -1,9 +1,9 @@
 ﻿using Bxcp.Application.DTOs;
 using Bxcp.Application.Ports.Incoming;
 using Bxcp.Application.UseCases;
-using Bxcp.Domain.DomainServices.Ports;
-using Bxcp.Domain.DomainServices.Services;
+using Bxcp.Domain.DomainServices;
 using Bxcp.Domain.Models;
+using Bxcp.Domain.Ports.Incoming;
 using Bxcp.Domain.Repositories;
 using Bxcp.Infrastructure.Adapters;
 using Bxcp.Infrastructure.DataAccess;

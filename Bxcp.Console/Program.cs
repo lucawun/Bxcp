@@ -6,8 +6,8 @@ public static class Program
 {
     static void Main(string[] args)
     {
-        string weatherFilePath = Path.Combine("TestData", "weather.csv");
-        string countriesFilePath = Path.Combine("TestData", "countries.csv");
+        string weatherFilePath = Path.Combine("Resources", "weather.csv");
+        string countriesFilePath = Path.Combine("Resources", "countries.csv");
 
         ServiceProvider serviceProvider = new ServiceCollection()
             .ConfigureServices(weatherFilePath, countriesFilePath)
