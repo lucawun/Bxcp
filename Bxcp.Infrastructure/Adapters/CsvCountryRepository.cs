@@ -30,10 +30,6 @@ public class CsvCountryRepository : IDataProviderRepository<Country>
     /// <summary>
     /// Maps a CSV record to a domain entity
     /// </summary>
-    private static Country MapToDomainEntity(CsvCountryRecord record) => new()
-    {
-        Name = record.Name,
-        Population = record.Population,
-        Area = record.Area
-    };
+    private static Country MapToDomainEntity(CsvCountryRecord record) => new(record.Name, record.Population, record.Area);
+
 }

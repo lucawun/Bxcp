@@ -16,10 +16,6 @@ public record Weather
     /// </summary>
     public double TemperatureSpread => MaxTemperature - MinTemperature;
 
-    public Weather()
-    {
-    }
-
     /// <summary>
     /// Creates a new Weather, validating initial values.
     /// </summary>

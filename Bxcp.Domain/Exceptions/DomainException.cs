@@ -1,5 +1,4 @@
-﻿
-namespace Bxcp.Domain.Exceptions;
+﻿namespace Bxcp.Domain.Exceptions;
 
 /// <summary>
 /// A general exception for domain-related errors.

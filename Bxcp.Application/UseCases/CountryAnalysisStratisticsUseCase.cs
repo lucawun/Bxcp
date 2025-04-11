@@ -20,6 +20,7 @@ public class CountryAnalysisStratisticsUsecase : ICountryAnalysisStatisticsUseca
 
     }
 
+    /// <inheritdoc />
     public CountryAnalysisResult AnalyzeCountryStatistics()
     {
         try

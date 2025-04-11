@@ -20,6 +20,7 @@ public class ClimateAnalysisUsecase : IClimateAnalysisUsecase
         _climateService = climateService ?? throw new ArgumentNullException(nameof(climateService));
     }
 
+    /// <inheritdoc />
     public ClimateAnalysisResult AnalyzeClimate()
     {
         try

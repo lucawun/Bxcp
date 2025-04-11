@@ -36,10 +36,6 @@ public class CsvWeatherRepository : IDataProviderRepository<Weather>
     /// </summary>
     /// <param name="record">The CSV record to map</param>
     /// <returns>A domain Weather entity</returns>
-    private static Weather MapToDomainEntity(CsvWeatherRecord record) => new()
-    {
-        Day = record.Day,
-        MaxTemperature = record.MxT,
-        MinTemperature = record.MnT
-    };
+    private static Weather MapToDomainEntity(CsvWeatherRecord record) => new(record.Day, record.MxT, record.MnT);
+
 }

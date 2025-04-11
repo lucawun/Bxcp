@@ -32,7 +32,7 @@ public abstract class CsvBaseFileReader<T>
             return Enumerable.Empty<T>();
         }
 
-        string headerLine = lines[0];
+        string headerLine = lines.First();
         Dictionary<string, int> columnMap = MapColumns(headerLine);
         EnsureRequiredColumnsExist(columnMap);
 
@@ -92,7 +92,6 @@ public abstract class CsvBaseFileReader<T>
         }
     }
 
-
     /// <summary>
     /// Parses the data lines into records
     /// </summary>
@@ -126,7 +125,6 @@ public abstract class CsvBaseFileReader<T>
 
         return records;
     }
-
 
     /// <summary>
     /// Splits a line into values based on the delimiter and trims whitespace

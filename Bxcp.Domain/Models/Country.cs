@@ -16,10 +16,6 @@ public record Country
     /// </summary>
     public double PopulationDensity => Population / Area;
 
-    public Country()
-    {
-    }
-
     /// <summary>
     /// Creates a new Country, validating initial values.
     /// </summary>
