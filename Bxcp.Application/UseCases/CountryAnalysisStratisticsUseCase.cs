@@ -2,8 +2,8 @@
 using Bxcp.Application.Exceptions;
 using Bxcp.Application.Mappers;
 using Bxcp.Application.Ports.Incoming;
-using Bxcp.Domain.DomainServices.Ports;
 using Bxcp.Domain.Models;
+using Bxcp.Domain.Ports.Incoming;
 using Bxcp.Domain.Repositories;
 
 
@@ -39,7 +39,7 @@ public class CountryAnalysisStratisticsUsecase : ICountryAnalysisStatisticsUseca
         }
         catch (Exception ex)
         {
-            throw new AnalysisFailedException($"Failed to analyze country data: {ex.Message}", ex);
+            throw new AnalysisFailedException($"Failed to analyze Country data: {ex.Message}", ex);
         }
     }
 }

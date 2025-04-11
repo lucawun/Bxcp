@@ -10,8 +10,4 @@
     <ProjectReference Include="..\Bxcp.Domain\Bxcp.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Ports\Outgoing\" />
-  </ItemGroup>
-
 </Project>
