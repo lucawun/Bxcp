@@ -1,4 +1,4 @@
-# BetterCallPaul Programming Challenge
+# BettercallPaul Programming Challenge
 
 Grundsätzlich gilt es Aufgaben, hauptsächlich zur Datenanalyse zu lösen:
 
@@ -7,13 +7,9 @@ Grundsätzlich gilt es Aufgaben, hauptsächlich zur Datenanalyse zu lösen:
 
 Obwohl beide Analysen technisch ähnlich sind (CSV-Daten einlesen und auswerten), repräsentieren sie unterschiedliche Fachgebiete.
 
-### Disclaimer zu KI-Unterstützung
-
-Für die Erstellung wurden KI-gestützte Tools, Typing Mind (via Claude 3.7 Sonnet) und GitHub Co-Pilot (via GPT-4o) genutzt.
-
 ## Ziele
 
-Die Ziele wurden durch den Stakeholder "BetterCallPaul" bereits festgelegt.
+Die Ziele wurden durch den Stakeholder "BettercallPaul" bereits festgelegt.
 
 |   Qualitätsziel   |   Was bedeutet das für mich, was verstehe ich darunter?   |
 | --- | --- |
@@ -22,6 +18,19 @@ Die Ziele wurden durch den Stakeholder "BetterCallPaul" bereits festgelegt.
 |   **Sauberes Softwaredesign** (clean software design & architecture)   |   Gute Architektur reduziert Komplexität durch sinnvolle Abstraktion. Die Trennung von Fachlogik und technischen Details macht ein System zukunftssicher und flexibel. Mit fokussierten Komponenten und definierten Schnittstellen schaffe ich ein System, das organisch mitwachsen kann, statt unter seinem eigenen Gewicht zu brechen. Stichwort: "Big Ball of Mud"   |
 
 ***
+
+## Technische Randbedingungen
+
+- [`.NET 8.0 (LTS), C#`](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) mit Support bis November 2026
+- [`CsvHelper`](https://joshclose.github.io/CsvHelper/) für CSV-Dateiverarbeitung
+- [`Microsoft.Extensions.DependencyInjection`](https://www.nuget.org/packages/microsoft.extensions.dependencyinjection) für  DependencyInjection
+- [`xUnit`](https://xunit.net/) als Testing-Framework
+- [`Moq`](https://github.com/devlooped/moq) als Mocking-Framework
+- [`Roslyn Analyzer`](https://learn.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview?view=vs-2022) für Statische Codeanalyse und Qualitätssicherung
+
+### Disclaimer zu KI-Unterstützung
+
+Für die Erstellung wurden KI-gestützte Tools, Typing Mind (via Claude 3.7 Sonnet) und GitHub Co-Pilot (via GPT-4o) genutzt.
 
 ## Die Lösung: Hexagonal/Onion-Architektur
 
@@ -101,9 +110,9 @@ Stichwort: **Vertical Slices**, fachliche Zusammengehörigkeiten besser gruppier
 
 ## ToDos / Technische Schulden
 
-- [x] Bessere Make-or-Buy-Entscheidung: Implementierung einer fertigen Lösung für das Auslesen von CSV-Dateien z.B. `CsvHelper` ebenso für die Spaltenzuordnung, bzw. das Mapping zwischen CSV-Spalten und Domänen/DTOs z.B. `AutoMapper`.
+- [x] Bessere Make-or-Buy-Entscheidung: Implementierung einer fertigen Lösung für das Auslesen von CSV-Dateien z.B. [`CsvHelper`](https://joshclose.github.io/CsvHelper) ebenso für die Spaltenzuordnung, bzw. das Mapping zwischen CSV-Spalten und Domänen/DTOs z.B. [`AutoMapper`](https://automapper.org).
 - [ ] Bessere Testfälle (nicht teilweise KI generierte) - die genau das "wie" der Anwendung testen und nicht mögliche vorhandene Fehler abtesten
-- [ ] Einsatz von `Fluent Validation` für bessere Validierungsprüfungen statt der Guard Clauses im Domain-Model, würde auch wieder die Testbarkeit erhöhen
-- [ ] Integration eines strukturierten Logging-Frameworks wie `Serilog` oder `NLog`, das verschiedene Log-Level unterstützt
+- [ ] Einsatz von [`Fluent Validation`](https://fluentvalidation.net) für bessere Validierungsprüfungen statt der Guard Clauses im Domain-Model, würde auch wieder die Testbarkeit erhöhen
+- [ ] Integration eines strukturierten Logging-Frameworks wie [`Serilog`](https://serilog.net) oder [`NLog`](https://nlog-project.org), das verschiedene Log-Level unterstützt
 - [ ] Dateipfade sind im Code festgelegt und nicht konfigurierbar -> Implementation einer Konfigurationsschicht, die Dateipfade aus Konfigurationsdateien oder Umgebungsvariablen liest.
 - [ ] Update auf **.NET 10** im Nov. 2025, 36 Monaten Support (Nov. 2028) -> derzeit **.NET 8.0 (LTS)**, EOL: Nov. 2026
