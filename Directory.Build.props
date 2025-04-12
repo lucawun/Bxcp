@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>CA1303;CS9035;CA1812</NoWarn>
+  </PropertyGroup>
+          
+  <!-- Roslyn analyzer configuration -->
+  <PropertyGroup>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <!-- Shared assembly info properties -->
+  <PropertyGroup>
+    <Company>BettercallPaul</Company>
+    <CompanyUrl>https://bcxp.de/</CompanyUrl>
+    <Authors>Luca Wunderlich</Authors>
+    <Copyright>Copyright © $([System.DateTime]::UtcNow.ToString(`yyyy`)) $(Company)</Copyright>
+  </PropertyGroup>
+
+  <!-- Roslyn analyzer packages -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" PrivateAssets="all" />
+    <PackageReference Include="Roslynator.Analyzers" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- Add assembly attributes -->
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>BuildDate</_Parameter1>
+      <_Parameter2>$([System.DateTime]::UtcNow.ToString(`o`))</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+</Project>
