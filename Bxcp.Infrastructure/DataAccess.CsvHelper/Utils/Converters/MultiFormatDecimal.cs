@@ -1,8 +1,7 @@
-﻿using CsvHelper.Configuration;
-using CsvHelper;
-using System.Globalization;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-
+using System.Globalization;
 
 namespace Bxcp.Infrastructure.DataAccess.CsvHelper.Utils.Converters;
 
@@ -11,7 +10,9 @@ namespace Bxcp.Infrastructure.DataAccess.CsvHelper.Utils.Converters;
 /// </summary>
 public class MultiFormatDecimal : DecimalConverter
 {
-    public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+    private const decimal DEFAULT_VALUE = 0m;
+
+    public override object ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
     {
         if (string.IsNullOrWhiteSpace(text))
             return 0m;
@@ -24,7 +25,6 @@ public class MultiFormatDecimal : DecimalConverter
             return result;
         }
 
-        // Fall back to the default converter if our custom logic fails
-        return base.ConvertFromString(text, row, memberMapData);
+        return base.ConvertFromString(text, row, memberMapData) ?? DEFAULT_VALUE;
     }
 }

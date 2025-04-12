@@ -1,30 +1,25 @@
-﻿using Moq;
-using Xunit;
-
-using Bxcp.Infrastructure.Adapters;
+﻿using Bxcp.Infrastructure.Adapters;
 using Bxcp.Infrastructure.DataAccess.CsvHelper;
-using Bxcp.Infrastructure.DTOs;
+using Moq;
+using Xunit;
 
 namespace Bxcp.Infrastructure.Tests.Adapters;
 
 public class CsvWeatherRepositoryTests
 {
     [Fact]
-    public void Constructor_NullFileReader_ThrowsArgumentNullException()
-    {
+    public void ConstructorNullFileReaderThrowsArgumentNullException() =>
         // Arrange & Act & Assert
         Assert.Throws<ArgumentNullException>(() => new CsvWeatherRepository(null!));
-    }
 
     [Fact]
-    public void ReadAllRecords_ReturnsCorrectlyMappedDomainEntities()
+    public void ReadAllRecordsReturnsCorrectlyMappedDomainEntities()
     {
         // Arrange
-        var mockFileReader = new Mock<CsvWeatherFileReader>("dummy/path");
-        mockFileReader.Setup(fr => fr.ReadAllRecords()).Returns(new List<CsvWeatherRecord>
-            {
-                new CsvWeatherRecord
-                {
+        Mock<CsvWeatherFileReader> mockFileReader = new("dummy/path");
+        mockFileReader.Setup(fr => fr.ReadAllRecords()).Returns(
+            [
+                new() {
                     Day = 1,
                     MxT = 30.5,
                     MnT = 15.2,
@@ -41,8 +36,7 @@ public class CsvWeatherRepositoryTests
                     R = 0.0,
                     AvSLP = 1012.2
                 },
-                new CsvWeatherRecord
-                {
+                new() {
                     Day = 2,
                     MxT = 28.3,
                     MnT = 17.5,
@@ -59,12 +53,12 @@ public class CsvWeatherRepositoryTests
                     R = 0.5,
                     AvSLP = 1010.8
                 }
-            });
+            ]);
 
-        var repository = new CsvWeatherRepository(mockFileReader.Object);
+        CsvWeatherRepository repository = new(mockFileReader.Object);
 
         // Act
-        var result = repository.ReadAllRecords().ToList();
+        List<Domain.Models.Weather> result = [.. repository.ReadAllRecords()];
 
         // Assert
         Assert.Equal(2, result.Count);
@@ -79,16 +73,16 @@ public class CsvWeatherRepositoryTests
     }
 
     [Fact]
-    public void ReadAllRecords_EmptySource_ReturnsEmptyCollection()
+    public void ReadAllRecordsEmptySourceReturnsEmptyCollection()
     {
         // Arrange
-        var mockFileReader = new Mock<CsvWeatherFileReader>("dummy/path");
-        mockFileReader.Setup(fr => fr.ReadAllRecords()).Returns(new List<CsvWeatherRecord>());
+        Mock<CsvWeatherFileReader> mockFileReader = new("dummy/path");
+        mockFileReader.Setup(fr => fr.ReadAllRecords()).Returns([]);
 
-        var repository = new CsvWeatherRepository(mockFileReader.Object);
+        CsvWeatherRepository repository = new(mockFileReader.Object);
 
         // Act
-        var result = repository.ReadAllRecords();
+        IEnumerable<Domain.Models.Weather> result = repository.ReadAllRecords();
 
         // Assert
         Assert.Empty(result);

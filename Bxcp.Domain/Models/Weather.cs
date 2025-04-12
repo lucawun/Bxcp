@@ -33,5 +33,5 @@ public record Weather
         Day = day;
         MaxTemperature = maxTemperature;
         MinTemperature = minTemperature;
-    } 
+    }
 }

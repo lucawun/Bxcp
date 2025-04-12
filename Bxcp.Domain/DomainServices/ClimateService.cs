@@ -6,7 +6,6 @@ namespace Bxcp.Domain.DomainServices;
 
 public class ClimateService : IClimateService
 {
-
     /// <summary>
     /// Finds the weather record with the smallest temperature spread.
     /// Temperature spread is typically the difference between maximum and minimum temperature.
@@ -16,7 +15,7 @@ public class ClimateService : IClimateService
     /// <exception cref="DomainException">Thrown when the weather records collection is null or empty</exception>
     public Weather FindSmallestTemperatureSpread(IEnumerable<Weather> records)
     {
-        if (records is null || !records.Any())
+        if (records?.Any() != true)
             throw new DomainException("Weather records cannot be null or empty.");
 
         return records

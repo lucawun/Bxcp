@@ -1,6 +1,5 @@
-﻿using Xunit;
-
-using Bxcp.Infrastructure.DataAccess.CsvHelper.Utils.Converters;
+﻿using Bxcp.Infrastructure.DataAccess.CsvHelper.Utils.Converters;
+using Xunit;
 
 namespace Bxcp.Infrastructure.Tests.DataAccess.CsvHelper;
 
@@ -12,12 +11,12 @@ public class NormalizeNumberTests
     [InlineData("1234.56", "1234.56")]         // Standard decimal
     [InlineData("1234,56", "1234.56")]         // Comma as decimal separator
     [InlineData("", "")]                       // Empty string
-    [InlineData(null, null)]                   // Null
+    [InlineData(null, null)]                        // Null input, empty string expected
     [InlineData("1234", "1234")]               // Integer
-    public void Normalize_HandlesVariousFormats_Correctly(string input, string expected)
+    public void NormalizeHandlesVariousFormatsCorrectly(string? input, string? expected)
     {
         // Act
-        var result = NormalizeNumber.Normalize(input);
+        string result = NormalizeNumber.Normalize(input!);
 
         // Assert
         Assert.Equal(expected, result);

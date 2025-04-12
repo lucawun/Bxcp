@@ -15,15 +15,15 @@ public class ClimateServiceTests
     }
 
     [Fact]
-    public void FindSmallestTemperatureSpread_WithValidData_ReturnsCorrectRecord()
+    public void FindSmallestTemperatureSpreadWithValidDataReturnsCorrectRecord()
     {
         // Arrange
-        List<Weather> records = new List<Weather>
-        {
+        List<Weather> records =
+        [
             new Weather(1, 30.0, 20.0), // spread = 10
             new Weather(2, 25.0, 20.0), // spread = 5 (smallest)
             new Weather(3, 35.0, 15.0)  // spread = 20
-        };
+        ];
 
         // Act
         Weather result = _service.FindSmallestTemperatureSpread(records);
@@ -34,10 +34,10 @@ public class ClimateServiceTests
     }
 
     [Fact]
-    public void FindSmallestTemperatureSpread_WithEmptyList_ThrowsDomainException()
+    public void FindSmallestTemperatureSpreadWithEmptyListThrowsDomainException()
     {
         // Arrange
-        List<Weather> records = new List<Weather>();
+        List<Weather> records = [];
 
         // Act & Assert
         DomainException exception = Assert.Throws<DomainException>(() => _service.FindSmallestTemperatureSpread(records));
@@ -45,7 +45,7 @@ public class ClimateServiceTests
     }
 
     [Fact]
-    public void FindSmallestTemperatureSpread_WithNullList_ThrowsDomainException()
+    public void FindSmallestTemperatureSpreadWithNullListThrowsDomainException()
     {
         // Arrange
         List<Weather>? records = null;
@@ -56,15 +56,15 @@ public class ClimateServiceTests
     }
 
     [Fact]
-    public void FindSmallestTemperatureSpread_WithMultipleSameValues_ReturnsFirst()
+    public void FindSmallestTemperatureSpreadWithMultipleSameValuesReturnsFirst()
     {
         // Arrange
-        List<Weather> records = new List<Weather>
-        {
+        List<Weather> records =
+        [
             new Weather(1, 30.0, 20.0), // spread = 10
             new Weather(2, 25.0, 15.0), // spread = 10 (same as first)
             new Weather(3, 35.0, 25.0)  // spread = 10 (same as first)
-        };
+        ];
 
         // Act
         Weather result = _service.FindSmallestTemperatureSpread(records);
@@ -74,15 +74,15 @@ public class ClimateServiceTests
     }
 
     [Fact]
-    public void FindSmallestTemperatureSpread_WithZeroSpread_ReturnsCorrectRecord()
+    public void FindSmallestTemperatureSpreadWithZeroSpreadReturnsCorrectRecord()
     {
         // Arrange
-        List<Weather> records = new List<Weather>
-        {
+        List<Weather> records =
+        [
             new Weather(1, 30.0, 20.0), // spread = 10
             new Weather(2, 25.0, 25.0), // spread = 0 (smallest)
             new Weather(3, 35.0, 15.0)  // spread = 20
-        };
+        ];
 
         // Act
         Weather result = _service.FindSmallestTemperatureSpread(records);
@@ -93,15 +93,15 @@ public class ClimateServiceTests
     }
 
     [Fact]
-    public void FindSmallestTemperatureSpread_WithNegativeTemperatures_WorksCorrectly()
+    public void FindSmallestTemperatureSpreadWithNegativeTemperaturesWorksCorrectly()
     {
         // Arrange
-        List<Weather> records = new List<Weather>
-        {
+        List<Weather> records =
+        [
             new Weather(1, -5.0, -10.0),   // spread = 5
             new Weather(2, -15.0, -20.0),  // spread = 5 (same)
             new Weather(3, 0.0, -30.0)     // spread = 30
-        };
+        ];
 
         // Act
         Weather result = _service.FindSmallestTemperatureSpread(records);

@@ -1,33 +1,29 @@
-﻿using CsvHelper;
+﻿using Bxcp.Infrastructure.DTOs;
+using CsvHelper;
 using CsvHelper.Configuration;
-
-using Bxcp.Infrastructure.DTOs;
 
 namespace Bxcp.Infrastructure.DataAccess.CsvHelper;
 
 /// <summary>
 /// Reads country data from CSV files
 /// </summary>
-public class CsvCountryFileReader : CsvBaseFileReader<CsvCountryRecord>
+/// <remarks>
+/// Initializes a new instance of the CsvCountryFileReader
+/// </remarks>
+/// <param name="filePath">Path to the CSV file containing country data</param>
+public class CsvCountryFileReader(string filePath) : CsvBaseFileReader<CsvCountryRecord>(filePath, ';')
 {
-    /// <summary>
-    /// Initializes a new instance of the CsvCountryFileReader
-    /// </summary>
-    /// <param name="filePath">Path to the CSV file containing country data</param>
-    public CsvCountryFileReader(string filePath) : base(filePath, ';')
-    {
-    }
-
     /// <inheritdoc />
     protected override void RegisterMapping(CsvReader csvReader)
     {
+        ArgumentNullException.ThrowIfNull(csvReader);
         csvReader.Context.RegisterClassMap<CountryRecordMap>();
     }
 
     /// <summary>
     /// Maps CSV columns to CsvCountryRecord DTO
     /// </summary>
-    private class CountryRecordMap : ClassMap<CsvCountryRecord>
+    private sealed class CountryRecordMap : ClassMap<CsvCountryRecord>
     {
         public CountryRecordMap()
         {

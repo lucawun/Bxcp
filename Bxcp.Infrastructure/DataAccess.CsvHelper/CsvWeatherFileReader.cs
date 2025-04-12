@@ -1,30 +1,22 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
-
+﻿using Bxcp.Infrastructure.DataAccess.CsvHelper.Utils.Converters;
 using Bxcp.Infrastructure.DTOs;
-using Bxcp.Infrastructure.DataAccess.CsvHelper.Utils.Converters;
+using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace Bxcp.Infrastructure.DataAccess.CsvHelper;
 
 /// <summary>
 /// Reads weather data from CSV files
 /// </summary>
-public class CsvWeatherFileReader : CsvBaseFileReader<CsvWeatherRecord>
+public class CsvWeatherFileReader(string filePath) : CsvBaseFileReader<CsvWeatherRecord>(filePath, ',')
 {
-    public CsvWeatherFileReader(string filePath) : base(filePath, ',')
-    {
-    }
-
     /// <inheritdoc />
-    protected override void RegisterMapping(CsvReader csvReader)
-    {
-        csvReader.Context.RegisterClassMap<WeatherRecordMap>();
-    }
+    protected override void RegisterMapping(CsvReader csvReader) => csvReader?.Context.RegisterClassMap<WeatherRecordMap>();
 
     /// <summary>
     /// Maps CSV columns to CsvWeatherRecord DTO
     /// </summary>
-    private class WeatherRecordMap : ClassMap<CsvWeatherRecord>
+    private sealed class WeatherRecordMap : ClassMap<CsvWeatherRecord>
     {
         public WeatherRecordMap()
         {

@@ -7,15 +7,15 @@ namespace Bxcp.Domain.Tests.Models;
 public class WeatherTests
 {
     [Fact]
-    public void Constructor_WithValidData_CreatesWeather()
+    public void ConstructorWithValidDataCreatesWeather()
     {
         // Arrange
-        int day = 1;
-        double maxTemp = 30.0;
-        double minTemp = 20.0;
+        const int day = 1;
+        const double maxTemp = 30.0;
+        const double minTemp = 20.0;
 
         // Act
-        Weather weather = new Weather(day, maxTemp, minTemp);
+        Weather weather = new(day, maxTemp, minTemp);
 
         // Assert
         Assert.Equal(day, weather.Day);
@@ -24,12 +24,12 @@ public class WeatherTests
     }
 
     [Fact]
-    public void Constructor_WithZeroDay_ThrowsDomainException()
+    public void ConstructorWithZeroDayThrowsDomainException()
     {
         // Arrange
-        int day = 0;
-        double maxTemp = 30.0;
-        double minTemp = 20.0;
+        const int day = 0;
+        const double maxTemp = 30.0;
+        const double minTemp = 20.0;
 
         // Act & Assert
         DomainException exception = Assert.Throws<DomainException>(() => new Weather(day, maxTemp, minTemp));
@@ -37,12 +37,12 @@ public class WeatherTests
     }
 
     [Fact]
-    public void Constructor_WithNegativeDay_ThrowsDomainException()
+    public void ConstructorWithNegativeDayThrowsDomainException()
     {
         // Arrange
-        int day = -1;
-        double maxTemp = 30.0;
-        double minTemp = 20.0;
+        const int day = -1;
+        const double maxTemp = 30.0;
+        const double minTemp = 20.0;
 
         // Act & Assert
         DomainException exception = Assert.Throws<DomainException>(() => new Weather(day, maxTemp, minTemp));
@@ -50,27 +50,27 @@ public class WeatherTests
     }
 
     [Fact]
-    public void Constructor_WithMaxTempEqualToMinTemp_CreatesWeather()
+    public void ConstructorWithMaxTempEqualToMinTempCreatesWeather()
     {
         // Arrange
-        int day = 1;
-        double maxTemp = 20.0;
-        double minTemp = 20.0;
+        const int day = 1;
+        const double maxTemp = 20.0;
+        const double minTemp = 20.0;
 
         // Act
-        Weather weather = new Weather(day, maxTemp, minTemp);
+        Weather weather = new(day, maxTemp, minTemp);
 
         // Assert
         Assert.Equal(0.0, weather.TemperatureSpread);
     }
 
     [Fact]
-    public void Constructor_WithMaxTempLessThanMinTemp_ThrowsDomainException()
+    public void ConstructorWithMaxTempLessThanMinTempThrowsDomainException()
     {
         // Arrange
-        int day = 1;
-        double maxTemp = 20.0;
-        double minTemp = 30.0;
+        const int day = 1;
+        const double maxTemp = 20.0;
+        const double minTemp = 30.0;
 
         // Act & Assert
         DomainException exception = Assert.Throws<DomainException>(() => new Weather(day, maxTemp, minTemp));
@@ -78,11 +78,11 @@ public class WeatherTests
     }
 
     [Fact]
-    public void TemperatureSpread_CalculatesCorrectValue()
+    public void TemperatureSpreadCalculatesCorrectValue()
     {
         // Arrange
-        Weather weather = new Weather(1, 30.0, 20.0);
-        double expectedSpread = 10.0;
+        Weather weather = new(1, 30.0, 20.0);
+        const double expectedSpread = 10.0;
 
         // Act
         double spread = weather.TemperatureSpread;
@@ -92,11 +92,11 @@ public class WeatherTests
     }
 
     [Fact]
-    public void TemperatureSpread_WithNegativeTemperatures_CalculatesCorrectly()
+    public void TemperatureSpreadWithNegativeTemperaturesCalculatesCorrectly()
     {
         // Arrange
-        Weather weather = new Weather(1, -10.0, -30.0);
-        double expectedSpread = 20.0; 
+        Weather weather = new(1, -10.0, -30.0);
+        const double expectedSpread = 20.0;
 
         // Act
         double spread = weather.TemperatureSpread;
@@ -106,11 +106,11 @@ public class WeatherTests
     }
 
     [Fact]
-    public void TemperatureSpread_WithMixedSignTemperatures_CalculatesCorrectly()
+    public void TemperatureSpreadWithMixedSignTemperaturesCalculatesCorrectly()
     {
         // Arrange
-        Weather weather = new Weather(1, 10.0, -5.0);
-        double expectedSpread = 15.0; 
+        Weather weather = new(1, 10.0, -5.0);
+        const double expectedSpread = 15.0;
 
         // Act
         double spread = weather.TemperatureSpread;

@@ -17,7 +17,6 @@ public class CountryAnalysisStratisticsUsecase : ICountryAnalysisStatisticsUseca
     {
         _repository = fileReader ?? throw new ArgumentNullException(nameof(fileReader));
         _countryStatisticsService = countryStatisticsService ?? throw new ArgumentNullException(nameof(countryStatisticsService));
-
     }
 
     /// <inheritdoc />
@@ -27,7 +26,7 @@ public class CountryAnalysisStratisticsUsecase : ICountryAnalysisStatisticsUseca
         {
             IEnumerable<Country> records = _repository.ReadAllRecords();
 
-            if (records == null || !records.Any())
+            if (records?.Any() != true)
             {
                 throw new EmptyDataException("No records found in the file.");
             }

@@ -15,6 +15,8 @@ public static class CountryStatisticsMapper
     /// <returns>A DTO representing the country analysis result</returns>
     public static CountryAnalysisResult ToCountryStatisticsResult(Country countryRecord)
     {
+        ArgumentNullException.ThrowIfNull(countryRecord);
+
         return new CountryAnalysisResult
         {
             CountryWithHighestDensity = countryRecord.Name,

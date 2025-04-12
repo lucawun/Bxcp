@@ -6,7 +6,6 @@ namespace Bxcp.Domain.DomainServices;
 
 public class CountryStatisticsService : ICountryStatisticsService
 {
-
     /// <summary>
     /// Finds the country with the highest population density
     /// </summary>
@@ -15,7 +14,7 @@ public class CountryStatisticsService : ICountryStatisticsService
     /// <exception cref="DomainException">Thrown when the countries collection is null or empty</exception>
     public Country FindHighestPopulationDensity(IEnumerable<Country> countries)
     {
-        if (countries is null || !countries.Any())
+        if (countries?.Any() != true)
             throw new DomainException("Country records cannot be null or empty.");
 
         return countries

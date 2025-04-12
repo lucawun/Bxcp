@@ -5,12 +5,12 @@
 /// </summary>
 public record CsvCountryRecord
 {
-    public string Name { get; init; }
-    public string Capital { get; init; }
-    public string Accession { get; init; }
-    public int Population { get; init; }
-    public double Area { get; init; }
-    public string GDP { get; init; }
-    public string HDI { get; init; }
-    public string MEPs { get; init; }
+    public required string Name { get; init; }
+    public required string Capital { get; init; }
+    public required string Accession { get; init; }
+    public required int Population { get; init; }
+    public required double Area { get; init; }
+    public required string GDP { get; init; }
+    public required string HDI { get; init; }
+    public required string MEPs { get; init; }
 }

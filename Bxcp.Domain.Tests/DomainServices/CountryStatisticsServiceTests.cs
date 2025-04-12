@@ -15,15 +15,15 @@ public class CountryStatisticsServiceTests
     }
 
     [Fact]
-    public void FindHighestPopulationDensity_WithValidData_ReturnsCorrectCountry()
+    public void FindHighestPopulationDensityWithValidDataReturnsCorrectCountry()
     {
         // Arrange
-        List<Country> countries = new List<Country>
-        {
+        List<Country> countries =
+        [
             new Country("Country1", 1000000, 1000), // density = 1000
             new Country("Country2", 500000, 100),   // density = 5000 (highest)
             new Country("Country3", 2000000, 5000)  // density = 400
-        };
+        ];
 
         // Act
         Country result = _service.FindHighestPopulationDensity(countries);
@@ -34,10 +34,10 @@ public class CountryStatisticsServiceTests
     }
 
     [Fact]
-    public void FindHighestPopulationDensity_WithEmptyList_ThrowsDomainException()
+    public void FindHighestPopulationDensityWithEmptyListThrowsDomainException()
     {
         // Arrange
-        List<Country> countries = new List<Country>();
+        List<Country> countries = [];
 
         // Act & Assert
         DomainException exception = Assert.Throws<DomainException>(() => _service.FindHighestPopulationDensity(countries));
@@ -45,7 +45,7 @@ public class CountryStatisticsServiceTests
     }
 
     [Fact]
-    public void FindHighestPopulationDensity_WithNullList_ThrowsDomainException()
+    public void FindHighestPopulationDensityWithNullListThrowsDomainException()
     {
         // Arrange
         List<Country>? countries = null;
@@ -56,15 +56,15 @@ public class CountryStatisticsServiceTests
     }
 
     [Fact]
-    public void FindHighestPopulationDensity_WithMultipleSameValues_ReturnsFirst()
+    public void FindHighestPopulationDensityWithMultipleSameValuesReturnsFirst()
     {
         // Arrange
-        List<Country> countries = new List<Country>
-        {
+        List<Country> countries =
+        [
             new Country("Country1", 10000, 10), // density = 1000
             new Country("Country2", 20000, 20), // density = 1000 (same)
             new Country("Country3", 5000, 10)   // density = 500
-        };
+        ];
 
         // Act
         Country result = _service.FindHighestPopulationDensity(countries);
@@ -74,15 +74,15 @@ public class CountryStatisticsServiceTests
     }
 
     [Fact]
-    public void FindHighestPopulationDensity_WithExtremeValues_ReturnsCorrectResult()
+    public void FindHighestPopulationDensityWithExtremeValuesReturnsCorrectResult()
     {
         // Arrange
-        List<Country> countries = new List<Country>
-        {
+        List<Country> countries =
+        [
             new Country("Tiny", 100, 0.01),          // density = 10000 (highest)
             new Country("Medium", 1000000, 1000),    // density = 1000
             new Country("Huge", 1000000000, 10000000) // density = 100
-        };
+        ];
 
         // Act
         Country result = _service.FindHighestPopulationDensity(countries);
@@ -93,13 +93,13 @@ public class CountryStatisticsServiceTests
     }
 
     [Fact]
-    public void FindHighestPopulationDensity_WithSingleCountry_ReturnsThatCountry()
+    public void FindHighestPopulationDensityWithSingleCountryReturnsThatCountry()
     {
         // Arrange
-        List<Country> countries = new List<Country>
-        {
+        List<Country> countries =
+        [
             new Country("OnlyOne", 1000000, 1000) // density = 1000
-        };
+        ];
 
         // Act
         Country result = _service.FindHighestPopulationDensity(countries);

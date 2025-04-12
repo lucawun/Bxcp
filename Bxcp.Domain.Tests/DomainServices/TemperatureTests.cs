@@ -1,5 +1,4 @@
 ﻿using Bxcp.Application.Exceptions;
-using Bxcp.Application.Ports.Driving;
 using Bxcp.Application.UseCases;
 using Bxcp.Domain.Exceptions;
 using Bxcp.Domain.Models;
@@ -13,7 +12,7 @@ public class ClimateAnalysisUsecaseTests
 {
     private readonly Mock<IDataProviderRepository<Weather>> _mockRepository;
     private readonly Mock<IClimateService> _mockClimateService;
-    private readonly IClimateAnalysisUsecase _useCase;
+    private readonly ClimateAnalysisUsecase _useCase;
 
     public ClimateAnalysisUsecaseTests()
     {
@@ -23,31 +22,27 @@ public class ClimateAnalysisUsecaseTests
     }
 
     [Fact]
-    public void Constructor_NullRepository_ThrowsArgumentNullException()
-    {
+    public void ConstructorNullRepositoryThrowsArgumentNullException() =>
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() => new ClimateAnalysisUsecase(null!, _mockClimateService.Object));
-    }
 
     [Fact]
-    public void Constructor_NullClimateService_ThrowsArgumentNullException()
-    {
+    public void ConstructorNullClimateServiceThrowsArgumentNullException() =>
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() => new ClimateAnalysisUsecase(_mockRepository.Object, null!));
-    }
 
     [Fact]
-    public void AnalyzeClimate_HappyPath_ReturnsCorrectResult()
+    public void AnalyzeClimateHappyPathReturnsCorrectResult()
     {
         // Arrange
-        List<Weather> weatherRecords = new List<Weather>
-        {
+        List<Weather> weatherRecords =
+        [
             new Weather(1, 30.0, 20.0),
             new Weather(2, 25.0, 15.0),
             new Weather(3, 35.0, 25.0)
-        };
+        ];
 
-        Weather smallestSpreadWeather = new Weather(2, 25.0, 15.0);
+        Weather smallestSpreadWeather = new(2, 25.0, 15.0);
 
         _mockRepository.Setup(r => r.ReadAllRecords()).Returns(weatherRecords);
         _mockClimateService.Setup(s => s.FindSmallestTemperatureSpread(weatherRecords))
@@ -65,42 +60,45 @@ public class ClimateAnalysisUsecaseTests
     }
 
     [Fact]
-    public void AnalyzeClimate_RepositoryThrowsException_ThrowsAnalysisFailedException()
+    public void AnalyzeClimateRepositoryThrowsExceptionThrowsAnalysisFailedException()
     {
         // Arrange
-        _mockRepository.Setup(r => r.ReadAllRecords()).Throws(new Exception("Repository error"));
+        _mockRepository.Setup(r => r.ReadAllRecords()).Throws(new InvalidOperationException("Repository error"));
 
         // Act & Assert
         AnalysisFailedException exception = Assert.Throws<AnalysisFailedException>(() => _useCase.AnalyzeClimate());
-        Assert.Contains("Failed to analyze Climate data", exception.Message);
-        Assert.Contains("Repository error", exception.Message);
+        Assert.Contains("Failed to analyze Climate data", exception.Message, StringComparison.Ordinal);
+        Assert.Contains("Repository error", exception.Message, StringComparison.Ordinal);
     }
 
     [Fact]
-    public void AnalyzeClimate_ServiceThrowsException_ThrowsAnalysisFailedException()
+    public void AnalyzeClimateServiceThrowsExceptionThrowsAnalysisFailedException()
     {
         // Arrange
-        List<Weather> weatherRecords = new List<Weather> { new Weather(1, 30.0, 20.0) };
+        List<Weather> weatherRecords =
+        [
+            new Weather(1, 30.0, 20.0)
+        ];
         _mockRepository.Setup(r => r.ReadAllRecords()).Returns(weatherRecords);
         _mockClimateService.Setup(s => s.FindSmallestTemperatureSpread(weatherRecords))
             .Throws(new DomainException("Service error"));
 
         // Act & Assert
         AnalysisFailedException exception = Assert.Throws<AnalysisFailedException>(() => _useCase.AnalyzeClimate());
-        Assert.Contains("Failed to analyze Climate data", exception.Message);
-        Assert.Contains("Service error", exception.Message);
+        Assert.Contains("Failed to analyze Climate data", exception.Message, StringComparison.Ordinal);
+        Assert.Contains("Service error", exception.Message, StringComparison.Ordinal);
     }
 
     [Fact]
-    public void AnalyzeClimate_ServiceReturnsExpectedData_MapsCorrectly()
+    public void AnalyzeClimateServiceReturnsExpectedDataMapsCorrectly()
     {
         // Arrange
-        List<Weather> weatherRecords = new List<Weather>
-        {
+        List<Weather> weatherRecords =
+        [
             new Weather(1, 30.0, 20.0)
-        };
+        ];
 
-        Weather resultWeather = new Weather(1, 30.0, 20.0); // Spread = 10
+        Weather resultWeather = new(1, 30.0, 20.0); // Spread = 10
 
         _mockRepository.Setup(r => r.ReadAllRecords()).Returns(weatherRecords);
         _mockClimateService.Setup(s => s.FindSmallestTemperatureSpread(weatherRecords))

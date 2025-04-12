@@ -20,7 +20,7 @@ public class IntegrationTests
     }
 
     [Fact]
-    public void ServiceProvider_ConfigureServices_RegistersAllDependencies()
+    public void ServiceProviderConfigureServicesRegistersAllDependencies()
     {
         // Act
         ServiceProvider serviceProvider = new ServiceCollection()
@@ -36,7 +36,7 @@ public class IntegrationTests
     }
 
     [Fact]
-    public void RunWeatherAnalysis_WithValidData_ReturnsCorrectResult()
+    public void RunWeatherAnalysisWithValidDataReturnsCorrectResult()
     {
         // Arrange
         ServiceProvider serviceProvider = new ServiceCollection()
@@ -59,7 +59,7 @@ public class IntegrationTests
     }
 
     [Fact]
-    public void RunCountryAnalysis_WithValidData_ReturnsCorrectResult()
+    public void RunCountryAnalysisWithValidDataReturnsCorrectResult()
     {
         // Arrange
         ServiceProvider serviceProvider = new ServiceCollection()
@@ -82,11 +82,11 @@ public class IntegrationTests
     }
 
     [Fact]
-    public void ServiceProvider_WithInvalidFilePaths_ThrowsExceptionWhenUsed()
+    public void ServiceProviderWithInvalidFilePathsThrowsExceptionWhenUsed()
     {
         // Arrange
-        string invalidWeatherPath = "nonexistent_weather.csv";
-        string invalidCountriesPath = "nonexistent_countries.csv";
+        const string invalidWeatherPath = "nonexistent_weather.csv";
+        const string invalidCountriesPath = "nonexistent_countries.csv";
 
         ServiceProvider serviceProvider = new ServiceCollection()
             .ConfigureServices(invalidWeatherPath, invalidCountriesPath)
@@ -104,7 +104,7 @@ public class IntegrationTests
     }
 
     [Fact]
-    public void DomainLayer_RegistersExpectedServices()
+    public void DomainLayerRegistersExpectedServices()
     {
         // Act
         ServiceProvider serviceProvider = new ServiceCollection()

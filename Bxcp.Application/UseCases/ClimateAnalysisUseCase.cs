@@ -27,7 +27,9 @@ public class ClimateAnalysisUsecase : IClimateAnalysisUsecase
         {
             IEnumerable<Weather> records = _repository.ReadAllRecords();
 
-            if (records == null || !records.Any())
+            ArgumentNullException.ThrowIfNull(records);
+
+            if (!records.Any())
             {
                 throw new EmptyDataException("No records found in the file.");
             }

@@ -1,30 +1,25 @@
-﻿using Moq;
-using Xunit;
-
-using Bxcp.Infrastructure.Adapters;
+﻿using Bxcp.Infrastructure.Adapters;
 using Bxcp.Infrastructure.DataAccess.CsvHelper;
-using Bxcp.Infrastructure.DTOs;
+using Moq;
+using Xunit;
 
 namespace Bxcp.Infrastructure.Tests.Adapters;
 
 public class CsvCountryRepositoryTests
 {
     [Fact]
-    public void Constructor_NullFileReader_ThrowsArgumentNullException()
-    {
+    public void ConstructorNullFileReaderThrowsArgumentNullException() =>
         // Arrange & Act & Assert
         Assert.Throws<ArgumentNullException>(() => new CsvCountryRepository(null!));
-    }
 
     [Fact]
-    public void ReadAllRecords_ReturnsCorrectlyMappedDomainEntities()
+    public void ReadAllRecordsReturnsCorrectlyMappedDomainEntities()
     {
         // Arrange
-        var mockFileReader = new Mock<CsvCountryFileReader>("dummy/path");
-        mockFileReader.Setup(fr => fr.ReadAllRecords()).Returns(new List<CsvCountryRecord>
-            {
-                new CsvCountryRecord
-                {
+        Mock<CsvCountryFileReader> mockFileReader = new("dummy/path");
+        mockFileReader.Setup(fr => fr.ReadAllRecords()).Returns(
+            [
+                new() {
                     Name = "Germany",
                     Population = 83000000,
                     Area = 357022,
@@ -34,8 +29,7 @@ public class CsvCountryRepositoryTests
                     HDI = "0.947",
                     MEPs = "96"
                 },
-                new CsvCountryRecord
-                {
+                new() {
                     Name = "France",
                     Population = 67000000,
                     Area = 643801,
@@ -45,12 +39,12 @@ public class CsvCountryRepositoryTests
                     HDI = "0.901",
                     MEPs = "79"
                 }
-            });
+            ]);
 
-        var repository = new CsvCountryRepository(mockFileReader.Object);
+        CsvCountryRepository repository = new(mockFileReader.Object);
 
         // Act
-        var result = repository.ReadAllRecords().ToList();
+        List<Domain.Models.Country> result = [.. repository.ReadAllRecords()];
 
         // Assert
         Assert.Equal(2, result.Count);
@@ -65,16 +59,16 @@ public class CsvCountryRepositoryTests
     }
 
     [Fact]
-    public void ReadAllRecords_EmptySource_ReturnsEmptyCollection()
+    public void ReadAllRecordsEmptySourceReturnsEmptyCollection()
     {
         // Arrange
-        var mockFileReader = new Mock<CsvCountryFileReader>("dummy/path");
-        mockFileReader.Setup(fr => fr.ReadAllRecords()).Returns(new List<CsvCountryRecord>());
+        Mock<CsvCountryFileReader> mockFileReader = new("dummy/path");
+        mockFileReader.Setup(fr => fr.ReadAllRecords()).Returns([]);
 
-        var repository = new CsvCountryRepository(mockFileReader.Object);
+        CsvCountryRepository repository = new(mockFileReader.Object);
 
         // Act
-        var result = repository.ReadAllRecords();
+        IEnumerable<Domain.Models.Country> result = repository.ReadAllRecords();
 
         // Assert
         Assert.Empty(result);

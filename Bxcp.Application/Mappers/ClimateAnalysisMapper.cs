@@ -15,6 +15,8 @@ public static class ClimateAnalysisMapper
     /// <returns>A DTO representing the weather analysis result</returns>
     public static ClimateAnalysisResult ToClimateAnalysisResult(Weather weather)
     {
+        ArgumentNullException.ThrowIfNull(weather);
+
         return new ClimateAnalysisResult
         {
             DayWithSmallestTemperatureSpread = weather.Day,

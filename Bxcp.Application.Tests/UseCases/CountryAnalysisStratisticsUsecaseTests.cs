@@ -1,6 +1,4 @@
-﻿using Bxcp.Application.Exceptions;
-using Bxcp.Application.UseCases;
-using Bxcp.Domain.Exceptions;
+﻿using Bxcp.Application.UseCases;
 using Bxcp.Domain.Models;
 using Bxcp.Domain.Ports;
 using Moq;
@@ -22,31 +20,27 @@ public class CountryAnalysisStratisticsUsecaseTests
     }
 
     [Fact]
-    public void Constructor_NullRepository_ThrowsArgumentNullException()
-    {
+    public void ConstructorNullRepositoryThrowsArgumentNullException() =>
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() => new CountryAnalysisStratisticsUsecase(null!, _mockCountryService.Object));
-    }
 
     [Fact]
-    public void Constructor_NullCountryService_ThrowsArgumentNullException()
-    {
+    public void ConstructorNullCountryServiceThrowsArgumentNullException() =>
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() => new CountryAnalysisStratisticsUsecase(_mockRepository.Object, null!));
-    }
 
     [Fact]
-    public void AnalyzeCountryStatistics_HappyPath_ReturnsCorrectResult()
+    public void AnalyzeCountryStatisticsHappyPathReturnsCorrectResult()
     {
         // Arrange
-        List<Country> countries = new List<Country>
-        {
+        List<Country> countries =
+        [
             new Country("Country1", 1000000, 1000),
             new Country("Country2", 500000, 100),
             new Country("Country3", 2000000, 5000)
-        };
+        ];
 
-        Country highestDensityCountry = new Country("Country2", 500000, 100); // density = 5000
+        Country highestDensityCountry = new("Country2", 500000, 100); // density = 5000
 
         _mockRepository.Setup(r => r.ReadAllRecords()).Returns(countries);
         _mockCountryService.Setup(s => s.FindHighestPopulationDensity(countries))
@@ -63,17 +57,16 @@ public class CountryAnalysisStratisticsUsecaseTests
         _mockCountryService.Verify(s => s.FindHighestPopulationDensity(countries), Times.Once);
     }
 
-
     [Fact]
-    public void AnalyzeCountryStatistics_ServiceReturnsExpectedData_MapsCorrectly()
+    public void AnalyzeCountryStatisticsServiceReturnsExpectedDataMapsCorrectly()
     {
         // Arrange
-        List<Country> countries = new List<Country>
-        {
+        List<Country> countries =
+        [
             new Country("MicroCountry", 100000, 10) // Density = 10000
-        };
+        ];
 
-        Country resultCountry = new Country("MicroCountry", 100000, 10);
+        Country resultCountry = new("MicroCountry", 100000, 10);
 
         _mockRepository.Setup(r => r.ReadAllRecords()).Returns(countries);
         _mockCountryService.Setup(s => s.FindHighestPopulationDensity(countries))

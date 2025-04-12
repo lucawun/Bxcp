@@ -1,9 +1,10 @@
-﻿using CsvHelper.Configuration;
-using CsvHelper.TypeConversion;
+﻿using Bxcp.Infrastructure.DataAccess.CsvHelper.Utils.Converters;
 using CsvHelper;
-
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using System.Globalization;
-using Bxcp.Infrastructure.DataAccess.CsvHelper.Utils.Converters;
+
+namespace Bxcp.Infrastructure.DataAccess.CsvHelper;
 
 /// <summary>
 /// Base class for reading CSV files with header-based mapping
@@ -22,17 +23,14 @@ public abstract class CsvBaseFileReader<T>
         _configuration = CreateConfiguration(delimiter);
     }
 
-    private CsvConfiguration CreateConfiguration(char delimiter)
+    private static CsvConfiguration CreateConfiguration(char delimiter) => new(CultureInfo.InvariantCulture)
     {
-        return new CsvConfiguration(CultureInfo.InvariantCulture)
-        {
-            Delimiter = delimiter.ToString(),
-            HasHeaderRecord = true,
-            MissingFieldFound = null,  // Ignore missing fields
-            TrimOptions = TrimOptions.Trim,
-            PrepareHeaderForMatch = args => args.Header.ToLower() // Case-insensitive header matching
-        };
-    }
+        Delimiter = delimiter.ToString(),
+        HasHeaderRecord = true,
+        MissingFieldFound = null,  // Ignore missing fields
+        TrimOptions = TrimOptions.Trim,
+        PrepareHeaderForMatch = args => args.Header.ToUpperInvariant() // Case-insensitive header matching
+    };
 
     /// <summary>
     /// Reads all records from the CSV file
@@ -41,16 +39,16 @@ public abstract class CsvBaseFileReader<T>
     {
         EnsureFileExists();
 
-        using var reader = new StreamReader(_filePath);
-        using var csv = new CsvReader(reader, _configuration);
+        using StreamReader reader = new(_filePath);
+        using CsvReader csv = new(reader, _configuration);
 
         RegisterConverters(csv);
         RegisterMapping(csv);
 
-        return csv.GetRecords<T>().ToList();
+        return [.. csv.GetRecords<T>()];
     }
 
-    private void RegisterConverters(CsvReader csv)
+    private static void RegisterConverters(CsvReader csv)
     {
         csv.Context.TypeConverterCache.AddConverter<int>(new MultiFormatInt());
         csv.Context.TypeConverterCache.AddConverter<double>(new MultiFormatDouble());
@@ -78,8 +76,5 @@ public abstract class CsvBaseFileReader<T>
     /// <summary>
     /// Helper method to create a converter for a combined field (e.g., "Value1 Value2")
     /// </summary>
-    protected ITypeConverter CreateSplitFieldConverter<TField>(int partIndex, string separator = " ")
-    {
-        return new SplitField<TField>(partIndex, separator);
-    }
+    protected ITypeConverter CreateSplitFieldConverter<TField>(int partIndex, string separator = " ") => new SplitField<TField>(partIndex, separator);
 }

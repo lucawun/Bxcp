@@ -1,7 +1,6 @@
-﻿using CsvHelper.Configuration;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using CsvHelper;
-using Bxcp.Infrastructure.DataAccess.CsvHelper.Utils;
 
 namespace Bxcp.Infrastructure.DataAccess.CsvHelper.Utils.Converters;
 
@@ -21,12 +20,12 @@ public class SplitField<T> : DefaultTypeConverter
         _innerConverter = MultiFormatFactory.GetConverter(typeof(T));
     }
 
-    public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+    public override object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
     {
         if (string.IsNullOrWhiteSpace(text))
             return _innerConverter.ConvertFromString(null, row, memberMapData);
 
-        string[] parts = text.Split(new[] { _separator }, StringSplitOptions.RemoveEmptyEntries);
+        string[] parts = text.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
         if (parts.Length > _partIndex)
         {
             return _innerConverter.ConvertFromString(parts[_partIndex], row, memberMapData);

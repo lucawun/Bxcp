@@ -1,7 +1,7 @@
-﻿using CsvHelper.Configuration;
-using CsvHelper;
-using System.Globalization;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using System.Globalization;
 
 namespace Bxcp.Infrastructure.DataAccess.CsvHelper.Utils.Converters;
 
@@ -10,7 +10,9 @@ namespace Bxcp.Infrastructure.DataAccess.CsvHelper.Utils.Converters;
 /// </summary>
 public class MultiFormatDouble : DoubleConverter
 {
-    public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+    private const double DEFAULT_VALUE = 0.0;
+
+    public override object ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
     {
         if (string.IsNullOrWhiteSpace(text))
             return 0.0;
@@ -24,6 +26,6 @@ public class MultiFormatDouble : DoubleConverter
         }
 
         // Fall back to the default converter if our custom logic fails
-        return base.ConvertFromString(text, row, memberMapData);
+        return base.ConvertFromString(text, row, memberMapData) ?? DEFAULT_VALUE;
     }
 }

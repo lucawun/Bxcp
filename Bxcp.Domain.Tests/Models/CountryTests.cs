@@ -7,15 +7,15 @@ namespace Bxcp.Domain.Tests.Models;
 public class CountryTests
 {
     [Fact]
-    public void Constructor_WithValidData_CreatesCountry()
+    public void ConstructorWithValidDataCreatesCountry()
     {
         // Arrange
-        string name = "TestCountry";
-        int population = 1000000;
-        double area = 1000.0;
+        const string name = "TestCountry";
+        const int population = 1000000;
+        const double area = 1000.0;
 
         // Act
-        Country country = new Country(name, population, area);
+        Country country = new(name, population, area);
 
         // Assert
         Assert.Equal(name, country.Name);
@@ -24,12 +24,12 @@ public class CountryTests
     }
 
     [Fact]
-    public void Constructor_WithEmptyName_ThrowsDomainException()
+    public void ConstructorWithEmptyNameThrowsDomainException()
     {
         // Arrange
-        string name = "";
-        int population = 1000000;
-        double area = 1000.0;
+        const string name = "";
+        const int population = 1000000;
+        const double area = 1000.0;
 
         // Act & Assert
         DomainException exception = Assert.Throws<DomainException>(() => new Country(name, population, area));
@@ -37,12 +37,12 @@ public class CountryTests
     }
 
     [Fact]
-    public void Constructor_WithNullName_ThrowsDomainException()
+    public void ConstructorWithNullNameThrowsDomainException()
     {
         // Arrange
-        string? name = null;
-        int population = 1000000;
-        double area = 1000.0;
+        const string? name = null;
+        const int population = 1000000;
+        const double area = 1000.0;
 
         // Act & Assert
         DomainException exception = Assert.Throws<DomainException>(() => new Country(name!, population, area));
@@ -50,12 +50,12 @@ public class CountryTests
     }
 
     [Fact]
-    public void Constructor_WithNegativePopulation_ThrowsDomainException()
+    public void ConstructorWithNegativePopulationThrowsDomainException()
     {
         // Arrange
-        string name = "TestCountry";
-        int population = -1000;
-        double area = 1000.0;
+        const string name = "TestCountry";
+        const int population = -1000;
+        const double area = 1000.0;
 
         // Act & Assert
         DomainException exception = Assert.Throws<DomainException>(() => new Country(name, population, area));
@@ -63,12 +63,12 @@ public class CountryTests
     }
 
     [Fact]
-    public void Constructor_WithZeroArea_ThrowsDomainException()
+    public void ConstructorWithZeroAreaThrowsDomainException()
     {
         // Arrange
-        string name = "TestCountry";
-        int population = 1000000;
-        double area = 0;
+        const string name = "TestCountry";
+        const int population = 1000000;
+        const double area = 0;
 
         // Act & Assert
         DomainException exception = Assert.Throws<DomainException>(() => new Country(name, population, area));
@@ -76,12 +76,12 @@ public class CountryTests
     }
 
     [Fact]
-    public void Constructor_WithNegativeArea_ThrowsDomainException()
+    public void ConstructorWithNegativeAreaThrowsDomainException()
     {
         // Arrange
-        string name = "TestCountry";
-        int population = 1000000;
-        double area = -100;
+        const string name = "TestCountry";
+        const int population = 1000000;
+        const double area = -100;
 
         // Act & Assert
         DomainException exception = Assert.Throws<DomainException>(() => new Country(name, population, area));
@@ -89,11 +89,11 @@ public class CountryTests
     }
 
     [Fact]
-    public void PopulationDensity_CalculatesCorrectValue()
+    public void PopulationDensityCalculatesCorrectValue()
     {
         // Arrange
-        Country country = new Country("TestCountry", 10000, 100);
-        double expectedDensity = 100.0; 
+        Country country = new("TestCountry", 10000, 100);
+        const double expectedDensity = 100.0;
 
         // Act
         double density = country.PopulationDensity;
@@ -103,11 +103,11 @@ public class CountryTests
     }
 
     [Fact]
-    public void PopulationDensity_WithLargePopulation_CalculatesCorrectly()
+    public void PopulationDensityWithLargePopulationCalculatesCorrectly()
     {
         // Arrange
-        Country country = new Country("TestCountry", 1000000000, 1000);
-        double expectedDensity = 1000000.0;
+        Country country = new("TestCountry", 1000000000, 1000);
+        const double expectedDensity = 1000000.0;
 
         // Act
         double density = country.PopulationDensity;

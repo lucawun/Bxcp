@@ -26,28 +26,19 @@ public static class ServiceProviderExtensions
         return services;
     }
 
-    public static IServiceCollection AddDomainLayer(this IServiceCollection services)
-    {
-        return services
+    public static IServiceCollection AddDomainLayer(this IServiceCollection services) => services
             .AddSingleton<IClimateService, ClimateService>()
             .AddSingleton<ICountryStatisticsService, CountryStatisticsService>();
-    }
 
-    public static IServiceCollection AddApplicationLayer(this IServiceCollection services)
-    {
-        return services
+    public static IServiceCollection AddApplicationLayer(this IServiceCollection services) => services
             .AddSingleton<IClimateAnalysisUsecase, ClimateAnalysisUsecase>()
             .AddSingleton<ICountryAnalysisStatisticsUsecase, CountryAnalysisStratisticsUsecase>();
-    }
 
-    public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services, string weatherFilePath, string countriesFilePath)
-    {
-        return services
+    public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services, string weatherFilePath, string countriesFilePath) => services
             .AddSingleton(new CsvCountryFileReader(countriesFilePath))
             .AddSingleton(new CsvWeatherFileReader(weatherFilePath))
             .AddSingleton<IDataProviderRepository<Country>, CsvCountryRepository>()
             .AddSingleton<IDataProviderRepository<Weather>, CsvWeatherRepository>();
-    }
 
     public static void RunWeatherAnalysis(this ServiceProvider serviceProvider)
     {
@@ -61,7 +52,7 @@ public static class ServiceProviderExtensions
             System.Console.WriteLine($"Smallest temperature range: {result.SmallestTemperatureSpread:F2}°C");
             System.Console.WriteLine();
         }
-        catch (Exception ex)
+        catch (InvalidOperationException ex)
         {
             System.Console.WriteLine($"Error during weather analysis: {ex.Message}");
         }
@@ -79,7 +70,7 @@ public static class ServiceProviderExtensions
             System.Console.WriteLine($"Highest population density: {result.HighestDensity:F2} inhabitants per km²");
             System.Console.WriteLine();
         }
-        catch (Exception ex)
+        catch (InvalidOperationException ex)
         {
             System.Console.WriteLine($"Error during country analysis: {ex.Message}");
         }
