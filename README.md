@@ -1,4 +1,4 @@
-# BettercallPaul Programming Challenge [![CI-Pipeline](https://github.com/lucawun/Bxcp/actions/workflows/ci-pipeline.yml/badge.svg)](https://github.com/lucawun/Bxcp/actions/workflows/ci-pipeline.yml) 
+# BettercallPaul Programming Challenge [![CI-Pipeline](https://github.com/lucawun/Bxcp/actions/workflows/ci-pipeline.yml/badge.svg)](https://github.com/lucawun/Bxcp/actions/workflows/ci-pipeline.yml)  [![Dependabot Updates](https://github.com/lucawun/Bxcp/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/lucawun/Bxcp/actions/workflows/dependabot/dependabot-updates)
 
 Grundsätzlich gilt es Aufgaben, hauptsächlich zur Datenanalyse zu lösen:
 
@@ -28,6 +28,7 @@ Die Ziele wurden durch den Stakeholder "BettercallPaul" bereits festgelegt.
 - [`Moq`](https://github.com/devlooped/moq) als Mocking-Framework
 - [`Roslyn Analyzer`](https://learn.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview?view=vs-2022) für Statische Codeanalyse und Qualitätssicherung
 - [`GitHub Action, CI-Pipeline`](https://github.com/lucawun/Bxcp/actions/workflows/ci-pipeline.yml) für automatische Tests bei jedem Push ins Repo
+- [`GitHub Dependabot`](https://github.com/lucawun/Bxcp/actions/workflows/dependabot/dependabot-updates) für automatische Abhängigkeits-Aktuallisierung
 
 ### Disclaimer zu KI-Unterstützung
 
