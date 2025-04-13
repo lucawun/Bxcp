@@ -13,9 +13,9 @@ Die Ziele wurden durch den Stakeholder "BettercallPaul" bereits festgelegt.
 
 |   Qualitätsziel   |   Was bedeutet das für mich, was verstehe ich darunter?   |
 | --- | --- |
-|   **Robustheit & Korrektheit** (robustness & correctness)   |   Software muss unter allen Umständen funktionieren, nicht nur im Geradeausfall. Konsequente Validierung aller Eingaben, durchdachte Fehlerbehandlung und umfassende Tests. Systeme scheitern in der Praxis meist an unerwarteten Eingaben – daher ist defensive Programmierung für mich Pflicht, nicht Kür.   |
-|   **Lesbarkeit & Wartbarkeit** (readability & maintainability)   |   Code wird häufiger gelesen als geschrieben. Klare Benennungen, konsistente Strukturen und nachvollziehbare Logik schaffen Code, den andere (und ich selbst in 6 Monaten) sofort verstehen. Wartbarkeit ist kein Luxus, sondern wirtschaftliche Notwendigkeit – die meisten Kosten entstehen nach der Erstentwicklung.   |
-|   **Sauberes Softwaredesign** (clean software design & architecture)   |   Gute Architektur reduziert Komplexität durch sinnvolle Abstraktion. Die Trennung von Fachlogik und technischen Details macht ein System zukunftssicher und flexibel. Mit fokussierten Komponenten und definierten Schnittstellen schaffe ich ein System, das organisch mitwachsen kann, statt unter seinem eigenen Gewicht zu brechen. Stichwort: "Big Ball of Mud"   |
+|   **Robustheit & Korrektheit** (robustness & correctness)   |   Software muss unter allen Umständen funktionieren, nicht nur im Geradeausfall. Konsequente Validierung aller Eingaben, durchdachte Fehlerbehandlung und umfassende Tests.   |
+|   **Lesbarkeit & Wartbarkeit** (readability & maintainability)   |   Code wird häufiger gelesen als geschrieben. Klare Benennungen, konsistente Strukturen und nachvollziehbare Logik schaffen Code, den andere (und ich selbst in 6 Monaten) sofort verstehen. Wartbarkeit ist kein Luxus, sondern wirtschaftliche Notwendigkeit.   |
+|   **Sauberes Softwaredesign** (clean software design & architecture)   |   Gute Architektur reduziert Komplexität durch sinnvolle Abstraktion. Die Trennung von Fachlogik und technischen Details z.B. "CSV auslesen" macht ein System zukunftssicher und flexibel. Mit fokussierten Komponenten und definierten Schnittstellen schaffe ich ein System, das organisch mitwachsen kann, statt unter seinem eigenen Gewicht zu brechen. Stichwort: "Big Ball of Mud"   |
 
 ***
 
@@ -40,7 +40,7 @@ Die Hexagonale Architektur (auch "Ports & Adapters" oder "Onion Architecture" ge
 
 [Quelle: Blog Herberto Graca](https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/comment-page-1)
 
-Anders ausgedrückt: Im Zentrum steht die eigentliche Fachlogik (Was wird berechnet?), umgeben von Anwendungsfällen (Wie wird es genutzt?), und außen ist die technische Umsetzung (Woher kommen die Daten?).
+Anders ausgedrückt: Im Zentrum steht die eigentliche Fachlogik (Was wird berechnet?), umgeben von UseCases (Wie wird es genutzt?), und außen ist die technische Umsetzung / Infrastruktur (Woher kommen die Daten?).
 
 ### Warum habe ich mich dafür entschieden?
 
@@ -49,7 +49,7 @@ Anders ausgedrückt: Im Zentrum steht die eigentliche Fachlogik (Was wird berech
 - Die klare Trennung ermöglicht isoliertes Testen jeder Komponente ohne Abhängigkeiten zu externen Systemen, was die Codequalität verbessert und Wartung vereinfacht.
 - Präzise Fehlerbehandlung auf jeder Ebene - fachliche Fehler in der Domäne, Prozessfehler in der Anwendungsschicht, technische Fehler in der Infrastruktur.
 
-### 1. Domänenschicht/Domain-Layer (Core)
+### 1. Domänenschicht (Core) `Bxcp.Domain` 
 
 Der Kern meines Systems, der die eigentliche Fachlichkeit enthält – ohne Abhängigkeiten zu externen Systemen.
 
@@ -60,7 +60,7 @@ Der Kern meines Systems, der die eigentliche Fachlichkeit enthält – ohne Abh�
 
 Durch die Isolation der Fachlogik stelle ich sicher, dass sie verständlich bleibt, unabhängig von technischen Details funktioniert, von meinen Stakeholdern leicht nachvollzogen und leicht getestet werden kann.
 
-### 2. Anwendungsschicht/Application-Layer
+### 2. Anwendungsschicht  `Bxcp.Application` 
 
 Die Schicht, die UseCases beinhaltet und zwischen Domäne und Infrastruktur vermittelt.
 
@@ -70,7 +70,7 @@ Die Schicht, die UseCases beinhaltet und zwischen Domäne und Infrastruktur verm
 
 Es schafft eine klare Struktur und macht den Code selbsterklärend – jeder UseCase ist eine eigene abgeschlossene Einheit mit einem eindeutigen Zweck.
 
-### 3. Infrastrukturschicht
+### 3. Infrastrukturschicht `Bxcp.Infrastructure` 
 
 Die äußerste Schicht, die konkrete technische Implementierungen enthält.
 
