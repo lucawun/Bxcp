@@ -36,6 +36,52 @@ Die Ziele wurden durch den Stakeholder "BettercallPaul" bereits festgelegt.
 
 Für die Erstellung wurden KI-gestützte Tools, Typing Mind (via Claude 3.7 Sonnet) und GitHub Co-Pilot (via GPT-4o) genutzt.
 
+***
+
+# Getting Started
+
+Dieses Projekt braucht das [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) und das original Repository ist auf [GitHub](https://github.com/lucawun/Bxcp.git) zu finden.
+
+## Installation
+
+```bash
+# Repository klonen
+git clone https://github.com/lucawun/Bxcp.git
+
+# In das Projektverzeichnis wechseln
+cd Bxcp
+```
+
+## Build
+
+```bash
+# Abhängigkeiten wiederherstellen
+dotnet restore
+
+# Projekt builden
+dotnet build
+```
+
+## Tests
+
+```bash
+# Alle Tests ausführen
+dotnet test
+
+# Tests für ein spezifisches Projekt ausführen
+dotnet test Bxcp.Domain.Tests/Bxcp.Domain.Tests.csproj
+```
+
+## Entwicklungsumgebungen
+
+Das Projekt kann mit allen gängigen .NET-kompatiblen Entwicklungsumgebungen bearbeitet werden:
+
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
+- [Visual Studio Code](https://code.visualstudio.com/) mit C# Extension
+- [JetBrains Rider](https://www.jetbrains.com/rider/)
+
+***
+
 ## Die Lösung: Hexagonal/Onion-Architektur
 
 Die Hexagonale Architektur (auch "Ports & Adapters" oder "Onion Architecture" genannt) funktioniert wie eine Zwiebel mit mehreren Schichten:
@@ -120,3 +166,14 @@ Stichwort: **Vertical Slices**, fachliche Zusammengehörigkeiten besser gruppier
 - [ ] Integration eines strukturierten Logging-Frameworks wie [`Serilog`](https://serilog.net) oder [`NLog`](https://nlog-project.org), das verschiedene Log-Level unterstützt
 - [ ] Dateipfade sind im Code festgelegt und nicht konfigurierbar -> Implementation einer Konfigurationsschicht, die Dateipfade aus Konfigurationsdateien oder Umgebungsvariablen liest.
 - [ ] Update auf **.NET 10** im Nov. 2025, 36 Monaten Support (Nov. 2028) -> derzeit **.NET 8.0 (LTS)**, EOL: Nov. 2026
+
+***
+
+## Lizenz
+
+Dieses Projekt ist eine modifizierte Version eines ursprünglich von BettercallPaul GmbH entwickelten Projektes und wird unter der [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) verteilt.
+
+- Copyright © 2025 Luca Wunderlich - Modifikationen und Erweiterungen, Lösen der Aufgabe
+- Copyright © 2022 BettercallPaul GmbH - Ursprüngliches Werk, zur Verfügung stellen der CSVs, Anforderungen
+
+Die vollständigen Lizenzdetail sind in der [LICENSE](LICENSE) Datei im Hauptverzeichnis des Projekts.
