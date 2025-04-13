@@ -7,12 +7,12 @@ using Bxcp.Domain.Ports;
 
 namespace Bxcp.Application.UseCases;
 
-public class ClimateAnalysisUsecase : IClimateAnalysisUsecase
+public class ClimateAnalysisUseCase : IClimateAnalysisUseCase
 {
     private readonly IDataProviderRepository<Weather> _repository;
     private readonly IClimateService _climateService;
 
-    public ClimateAnalysisUsecase(
+    public ClimateAnalysisUseCase(
        IDataProviderRepository<Weather> repository,
        IClimateService climateService)
     {

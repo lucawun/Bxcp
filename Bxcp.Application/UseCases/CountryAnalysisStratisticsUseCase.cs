@@ -6,12 +6,12 @@ using Bxcp.Domain.Models;
 using Bxcp.Domain.Ports;
 
 namespace Bxcp.Application.UseCases;
-public class CountryAnalysisStratisticsUsecase : ICountryAnalysisStatisticsUsecase
+public class CountryAnalysisStratisticsUseCase : ICountryAnalysisStatisticsUseCase
 {
     private readonly IDataProviderRepository<Country> _repository;
     private readonly ICountryStatisticsService _countryStatisticsService;
 
-    public CountryAnalysisStratisticsUsecase(
+    public CountryAnalysisStratisticsUseCase(
        IDataProviderRepository<Country> fileReader,
        ICountryStatisticsService countryStatisticsService)
     {

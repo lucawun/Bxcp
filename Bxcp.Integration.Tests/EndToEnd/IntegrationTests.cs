@@ -28,8 +28,8 @@ public class IntegrationTests
             .BuildServiceProvider();
 
         // Assert
-        IClimateAnalysisUsecase? climateAnalysisUseCase = serviceProvider.GetService<IClimateAnalysisUsecase>();
-        ICountryAnalysisStatisticsUsecase? countryAnalysisUseCase = serviceProvider.GetService<ICountryAnalysisStatisticsUsecase>();
+        IClimateAnalysisUseCase? climateAnalysisUseCase = serviceProvider.GetService<IClimateAnalysisUseCase>();
+        ICountryAnalysisStatisticsUseCase? countryAnalysisUseCase = serviceProvider.GetService<ICountryAnalysisStatisticsUseCase>();
 
         Assert.NotNull(climateAnalysisUseCase);
         Assert.NotNull(countryAnalysisUseCase);
@@ -43,7 +43,7 @@ public class IntegrationTests
             .ConfigureServices(_weatherFilePath, _countriesFilePath)
             .BuildServiceProvider();
 
-        IClimateAnalysisUsecase climateAnalysisUseCase = serviceProvider.GetRequiredService<IClimateAnalysisUsecase>();
+        IClimateAnalysisUseCase climateAnalysisUseCase = serviceProvider.GetRequiredService<IClimateAnalysisUseCase>();
 
         // Act
         ClimateAnalysisResult result = climateAnalysisUseCase.AnalyzeClimate();
@@ -66,7 +66,7 @@ public class IntegrationTests
             .ConfigureServices(_weatherFilePath, _countriesFilePath)
             .BuildServiceProvider();
 
-        ICountryAnalysisStatisticsUsecase countryAnalysisUseCase = serviceProvider.GetRequiredService<ICountryAnalysisStatisticsUsecase>();
+        ICountryAnalysisStatisticsUseCase countryAnalysisUseCase = serviceProvider.GetRequiredService<ICountryAnalysisStatisticsUseCase>();
 
         // Act
         CountryAnalysisResult result = countryAnalysisUseCase.AnalyzeCountryStatistics();
@@ -92,8 +92,8 @@ public class IntegrationTests
             .ConfigureServices(invalidWeatherPath, invalidCountriesPath)
             .BuildServiceProvider();
 
-        IClimateAnalysisUsecase climateAnalysisUseCase = serviceProvider.GetRequiredService<IClimateAnalysisUsecase>();
-        ICountryAnalysisStatisticsUsecase countryAnalysisUseCase = serviceProvider.GetRequiredService<ICountryAnalysisStatisticsUsecase>();
+        IClimateAnalysisUseCase climateAnalysisUseCase = serviceProvider.GetRequiredService<IClimateAnalysisUseCase>();
+        ICountryAnalysisStatisticsUseCase countryAnalysisUseCase = serviceProvider.GetRequiredService<ICountryAnalysisStatisticsUseCase>();
 
         // Act & Assert - Check for inner exception
         AnalysisFailedException exception = Assert.Throws<AnalysisFailedException>(() => climateAnalysisUseCase.AnalyzeClimate());

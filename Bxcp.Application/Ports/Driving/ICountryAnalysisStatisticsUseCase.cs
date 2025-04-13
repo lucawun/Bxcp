@@ -2,7 +2,7 @@
 
 namespace Bxcp.Application.Ports.Driving;
 
-public interface ICountryAnalysisStatisticsUsecase
+public interface ICountryAnalysisStatisticsUseCase
 {
     /// <summary>
     /// Analyzes country data to find the country with the highest population density

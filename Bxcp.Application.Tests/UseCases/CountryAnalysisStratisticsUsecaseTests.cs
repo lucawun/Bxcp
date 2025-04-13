@@ -6,28 +6,28 @@ using Xunit;
 
 namespace Bxcp.Application.Tests.UseCases;
 
-public class CountryAnalysisStratisticsUsecaseTests
+public class CountryAnalysisStratisticsUseCaseTests
 {
     private readonly Mock<IDataProviderRepository<Country>> _mockRepository;
     private readonly Mock<ICountryStatisticsService> _mockCountryService;
-    private readonly CountryAnalysisStratisticsUsecase _useCase;
+    private readonly CountryAnalysisStratisticsUseCase _useCase;
 
-    public CountryAnalysisStratisticsUsecaseTests()
+    public CountryAnalysisStratisticsUseCaseTests()
     {
         _mockRepository = new Mock<IDataProviderRepository<Country>>();
         _mockCountryService = new Mock<ICountryStatisticsService>();
-        _useCase = new CountryAnalysisStratisticsUsecase(_mockRepository.Object, _mockCountryService.Object);
+        _useCase = new CountryAnalysisStratisticsUseCase(_mockRepository.Object, _mockCountryService.Object);
     }
 
     [Fact]
     public void ConstructorNullRepositoryThrowsArgumentNullException() =>
         // Act & Assert
-        Assert.Throws<ArgumentNullException>(() => new CountryAnalysisStratisticsUsecase(null!, _mockCountryService.Object));
+        Assert.Throws<ArgumentNullException>(() => new CountryAnalysisStratisticsUseCase(null!, _mockCountryService.Object));
 
     [Fact]
     public void ConstructorNullCountryServiceThrowsArgumentNullException() =>
         // Act & Assert
-        Assert.Throws<ArgumentNullException>(() => new CountryAnalysisStratisticsUsecase(_mockRepository.Object, null!));
+        Assert.Throws<ArgumentNullException>(() => new CountryAnalysisStratisticsUseCase(_mockRepository.Object, null!));
 
     [Fact]
     public void AnalyzeCountryStatisticsHappyPathReturnsCorrectResult()

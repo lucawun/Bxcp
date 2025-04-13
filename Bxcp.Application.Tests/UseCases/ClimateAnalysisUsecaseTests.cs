@@ -9,28 +9,28 @@ using Xunit;
 
 namespace Bxcp.Application.Tests.UseCases;
 
-public class ClimateAnalysisUsecaseTests
+public class ClimateAnalysisUseCaseTests
 {
     private readonly Mock<IDataProviderRepository<Weather>> _mockRepository;
     private readonly Mock<IClimateService> _mockClimateService;
-    private readonly ClimateAnalysisUsecase _useCase;
+    private readonly ClimateAnalysisUseCase _useCase;
 
-    public ClimateAnalysisUsecaseTests()
+    public ClimateAnalysisUseCaseTests()
     {
         _mockRepository = new Mock<IDataProviderRepository<Weather>>();
         _mockClimateService = new Mock<IClimateService>();
-        _useCase = new ClimateAnalysisUsecase(_mockRepository.Object, _mockClimateService.Object);
+        _useCase = new ClimateAnalysisUseCase(_mockRepository.Object, _mockClimateService.Object);
     }
 
     [Fact]
     public void ConstructorNullRepositoryThrowsArgumentNullException() =>
         // Act & Assert
-        Assert.Throws<ArgumentNullException>(() => new ClimateAnalysisUsecase(null!, _mockClimateService.Object));
+        Assert.Throws<ArgumentNullException>(() => new ClimateAnalysisUseCase(null!, _mockClimateService.Object));
 
     [Fact]
     public void ConstructorNullClimateServiceThrowsArgumentNullException() =>
         // Act & Assert
-        Assert.Throws<ArgumentNullException>(() => new ClimateAnalysisUsecase(_mockRepository.Object, null!));
+        Assert.Throws<ArgumentNullException>(() => new ClimateAnalysisUseCase(_mockRepository.Object, null!));
 
     [Fact]
     public void AnalyzeClimateHappyPathReturnsCorrectResult()

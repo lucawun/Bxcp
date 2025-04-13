@@ -2,7 +2,7 @@
 
 namespace Bxcp.Application.Ports.Driving;
 
-public interface IClimateAnalysisUsecase
+public interface IClimateAnalysisUseCase
 {
     /// <summary>
     /// Analyzes weather data to find the day with the smallest temperature spread
