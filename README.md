@@ -24,7 +24,7 @@ Die Ziele wurden durch den Stakeholder "BettercallPaul" bereits festgelegt.
 ## Technische Randbedingungen
 
 - [`.NET 8.0 (LTS), C#`](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) mit Support bis November 2026
-- [`CsvHelper`](https://joshclose.github.io/CsvHelper/) für CSV-Dateiverarbeitung
+- [`CsvHelper`](https://joshclose.github.io/CsvHelper/) für CSV-Dateiverarbeitung, Parsing, Mapping in DTOs
 - [`Microsoft.Extensions.DependencyInjection`](https://www.nuget.org/packages/microsoft.extensions.dependencyinjection) für  DependencyInjection
 - [`xUnit`](https://xunit.net/) als Testing-Framework
 - [`Moq`](https://github.com/devlooped/moq) als Mocking-Framework
