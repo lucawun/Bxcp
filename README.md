@@ -1,4 +1,4 @@
-# BettercallPaul Programming Challenge
+# BettercallPaul Programming Challenge [![CI-Pipeline](https://github.com/lucawun/Bxcp/actions/workflows/ci-pipeline.yml/badge.svg)](https://github.com/lucawun/Bxcp/actions/workflows/ci-pipeline.yml) 
 
 Grundsätzlich gilt es Aufgaben, hauptsächlich zur Datenanalyse zu lösen:
 
@@ -27,6 +27,7 @@ Die Ziele wurden durch den Stakeholder "BettercallPaul" bereits festgelegt.
 - [`xUnit`](https://xunit.net/) als Testing-Framework
 - [`Moq`](https://github.com/devlooped/moq) als Mocking-Framework
 - [`Roslyn Analyzer`](https://learn.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview?view=vs-2022) für Statische Codeanalyse und Qualitätssicherung
+- [`GitHub Action, CI-Pipeline`](https://github.com/lucawun/Bxcp/actions/workflows/ci-pipeline.yml) für automatische Tests bei jedem Push ins Repo
 
 ### Disclaimer zu KI-Unterstützung
 
