@@ -2,6 +2,14 @@
 <Project>
 
   <PropertyGroup>
+    <!-- Common C# settings -->
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <LangVersion>12.0</LangVersion>
+
+    <!-- Warning / error configuration -->
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>CA1303;CS9035;CA1812</NoWarn>
   </PropertyGroup>
