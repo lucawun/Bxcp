@@ -160,10 +160,10 @@ Stichwort: **Vertical Slices**, fachliche Zusammengehörigkeiten besser gruppier
 
 ## ToDos / Technische Schulden
 
-- [x] Bessere Make-or-Buy-Entscheidung: Implementierung einer fertigen Lösung für das Auslesen von CSV-Dateien z.B. [`CsvHelper`](https://joshclose.github.io/CsvHelper) ebenso für die Spaltenzuordnung, bzw. das Mapping zwischen CSV-Spalten und Domänen/DTOs z.B. [`AutoMapper`](https://automapper.org).
+- [x] Bessere Make-or-Buy-Entscheidung: Implementierung einer fertigen Lösung für das Auslesen von CSV-Dateien z.B. [`CsvHelper`](https://joshclose.github.io/CsvHelper) ebenso für die Spaltenzuordnung, bzw. das Mapping zwischen CSV-Spalten und Domänen/DTOs z.B. [`AutoMapper`](https://automapper.org)
 - [ ] Bessere Testfälle (nicht teilweise KI generierte) - die genau das "wie" der Anwendung testen und nicht mögliche vorhandene Fehler abtesten
-- [ ] Einsatz von [`Shouldly`](https://github.com/shouldly/shouldly) für bessere Validierungsprüfungen statt der Guard Clauses; [`Fluent Assertions`](https://fluentassertions.com) wäre aufgrund kürzlichr geänderter Lizenzbedingungen für kommerzielle Zwecke nicht ohne weitere Kosten nutzbar.
-- [ ] Architecture Testing einführen zur Überprüfung der Architekturregeln (siehe oben), in Frage käme hier [`NetArchTest`](https://github.com/BenMorris/NetArchTest).
+- [ ] Einsatz von [`Shouldly`](https://github.com/shouldly/shouldly) für bessere Validierungsprüfungen statt der Guard Clauses; [`Fluent Assertions`](https://fluentassertions.com) wäre aufgrund kürzlich geänderter Lizenzbedingungen für kommerzielle Zwecke nicht ohne weitere Kosten nutzbar.
+- [ ] Einführung von Architecture Testing zur Überprüfung der Architekturregeln (siehe oben), in Frage käme hier [`NetArchTest`](https://github.com/BenMorris/NetArchTest)
 - [ ] Integration eines strukturierten Logging-Frameworks wie [`Serilog`](https://serilog.net) oder [`NLog`](https://nlog-project.org), das verschiedene Log-Level unterstützt.
 - [ ] Dateipfade sind im Code festgelegt und nicht konfigurierbar -> Implementation einer Konfigurationsschicht, die Dateipfade aus Konfigurationsdateien oder Umgebungsvariablen liest.
 - [ ] Update auf **.NET 10** im Nov. 2025, 36 Monaten Support (Nov. 2028) -> derzeit **.NET 8.0 (LTS)**, EOL: Nov. 2026
